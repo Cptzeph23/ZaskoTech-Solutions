@@ -1,0 +1,72 @@
+{% extends 'starter-page.html' %}
+{% load static %}
+{% block body %}
+
+<main>
+
+    <h1 class="text-center mt-4 mb-4 fw-bolder text-primary text-decoration-underline">E-Commerce  Website</h1>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div>
+            <p>This package of e-merce, we delivery a comprehensive solution for your online business needs.</p>
+            <p>We offer: </p>
+            <ul>
+                <li>Responsive Design</li>
+                <li>Cloud deployment and Hosting</li>
+                <li>Free custom domain</li>
+                <li>SEO Optimization</li>
+            </ul>
+        </div>
+        <div>
+            <h4>Book Now!</h4>
+            <p>Ready to get started? Contact us today to schedule your free consultation! <br> OR ...</p> 
+            <p>Make your reservation now by making 20% down payment (Ksh. 2,000) and take the first step towards growing your online business!</p>
+        
+        </div>
+        <!--Booking form-->
+        <div class="mt-4 align-content-center align-items-center border-3 border mb-5 border-primary rounded p-3">
+            <form>
+                <div class="form-group m-3">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group m-3">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group m-3">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                </div>
+                
+            </form>
+                <div>
+                <button type="submit" id="web" class="btn mt-3 border-3 text-center p-3 btn-primary" style="display: flex; align-items: center; justify-content: center; margin: 0 auto;">Pay Ksh. 2,000</button>
+                </div>
+        </div>
+
+    </div>
+    
+
+
+
+</main>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
