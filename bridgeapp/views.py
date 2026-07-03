@@ -30,6 +30,9 @@ def portfolio(request):
 def team(request):
     return render(request, 'team.html')
 
+def website(request):
+    return render(request, 'website.html')
+
 
 
 
