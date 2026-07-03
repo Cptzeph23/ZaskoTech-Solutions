@@ -33,6 +33,9 @@ def team(request):
 def website(request):
     return render(request, 'website.html')
 
+def ecommerce(request):
+    return render(request, 'ecommerce.html')
+
 
 
 
