@@ -36,6 +36,12 @@ def website(request):
 def ecommerce(request):
     return render(request, 'ecommerce.html')
 
+def mobileApp(request):
+    return render(request, 'mobileApp.html')
+
+def customSystems(request):
+    return render(request, 'customSystems.html')
+
 
 
 
