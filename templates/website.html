@@ -1,26 +1,53 @@
 {% extends 'starter-page.html' %}
 {% load static %}
 {% block body %}
+<style>
+    main {
+        background-color: #19273d;
+        padding: 20px;
+    }
+    #parent {
+        background-color: #9e9e9e;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #000;
+        border-radius: 50px;
+    }
+    .card {
+        background-color: #a6c2df;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-color: #0f32f5;
+    }
+
+</style>
 
 <main>
 
     <h1 class="text-center mt-4 mb-4 fw-bolder text-primary text-decoration-underline">E-Commerce  Website</h1>
     <div class="d-flex flex-column justify-content-center align-items-center border-2 border-primary rounded p-3 m-3">
-        <div>
-            <p>This package of e-merce, we delivery a comprehensive solution for your online business needs.</p>
-            <p>We offer: </p>
-            <ul>
-                <li>Responsive Design</li>
-                <li>Cloud deployment and Hosting</li>
-                <li>Free custom domain</li>
-                <li>SEO Optimization</li>
-            </ul>
-        </div>
-        <div>
-            <h4>Book Now!</h4>
-            <p>Ready to get started? Contact us today to schedule your free consultation! <br> OR ...</p> 
-            <p>Make your reservation now by making 20% down payment (Ksh. 2,000) and take the first step towards growing your online business!</p>
+        <div id="parent" class="d-flex flex-column justify-content-center align-items-center border-2 border-primary rounded p-3 m-3">
+            <div class="card mb-3" col-lg-6 col-md-6 col-sm-12 style="max-width: 600px;">
+                <p>On this package of e-merce, we delivery a comprehensive solution for your online business needs.</p>
+                <p>We offer: </p>
+                <ul>
+                    <li>Responsive Design</li>
+                    <li>Cloud deployment and Hosting</li>
+                    <li>Free custom domain</li>
+                    <li>SEO Optimization</li>
+                </ul>
+            </div>
+            <div class="card mb-3" col-lg-6 col-md-6 col-sm-12 style="max-width: 600px;">
+                <h4>Book Now!</h4>
+                <p>Ready to get started? Contact us today to schedule your free consultation! <br> OR ...</p> 
+                <p>Make your reservation now by making 20% down payment (Ksh. 2,000) and take the first step towards growing your online business!</p>
         
+            </div>
         </div>
         <!--Booking form-->
         <div class="mt-4 text-dark align-content-center align-items-center border-3 border mb-5 border-success rounded p-3" style="display: absolute;">
