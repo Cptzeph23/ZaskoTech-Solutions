@@ -5,7 +5,7 @@
 <main>
 
     <h1 class="text-center mt-4 mb-4 fw-bolder text-primary text-decoration-underline">E-Commerce  Website</h1>
-    <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center border-2 border-primary rounded p-3 m-3">
         <div>
             <p>This package of e-merce, we delivery a comprehensive solution for your online business needs.</p>
             <p>We offer: </p>
@@ -23,24 +23,25 @@
         
         </div>
         <!--Booking form-->
-        <div class="mt-4 align-content-center align-items-center border-3 border mb-5 border-primary rounded p-3">
+        <div class="mt-4 text-dark align-content-center align-items-center border-3 border mb-5 border-success rounded p-3" style="display: absolute;">
             <form>
+                <h3 class="text-success text-center"><u>Lipa na Mpesa</u></h3>
                 <div class="form-group m-3">
                     <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your name'">
                 </div>
                 <div class="form-group m-3">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                    <input type="email" class="form-control" id="email" placeholder="email@example.com" onfocus="this.placeholder=''" onblur="this.placeholder='email@example.com'">
                 </div>
                 <div class="form-group m-3">
                     <label for="phone">Phone:</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                    <input type="tel" class="form-control" id="phone" placeholder="+254 7XX XXX XXX" onfocus="this.placeholder=''" onblur="this.placeholder='+254 7XX XXX XXX'">
                 </div>
                 
             </form>
                 <div>
-                <button type="submit" id="web" class="btn mt-3 border-3 text-center p-3 btn-primary" style="display: flex; align-items: center; justify-content: center; margin: 0 auto;">Pay Ksh. 2,000</button>
+                <button type="submit" id="web" class="btn mt-3 border-3 text-center p-3 btn-success" style="display: flex; align-items: center; justify-content: center; margin: 0 auto;">Pay Ksh. 2,000</button>
                 </div>
         </div>
 
