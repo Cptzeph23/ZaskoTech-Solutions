@@ -1,0 +1,51 @@
+{% extends 'starter-page.html' %}
+{% load static %}
+{% block body %}
+
+  <!-- Booking Section -->
+    <section id="booking" class="booking section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Booking</h2>
+        <p>Book a consultation with our team</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 justify-content-center">
+
+          <div class="col-xl-6 col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="booking-form">
+              <form action="form" method="post" role="form" class="php-email-form">
+                <div class="row gy-3">
+                  <div class="col-md-6 form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="tel" name="phone" class="form-control" placeholder="Your Phone" required>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="date" name="date" class="form-control" placeholder="Booking Date" required>
+                  </div>
+                </div>
+                <div class="form-group mt-3">
+                  <textarea name="message" class="form-control" rows="5" placeholder="Message" required></textarea>
+                </div>
+                <div class="text-center mt-3">
+                  <button type="submit" class="btn mt-3 border-3 fw-bolder text-white text-center p-3 btn- btn-outline-info" style="display: flex; background-color: rgb(27, 3, 240); align-items: center; justify-content: center; margin: 0 auto; border-radius: 15px;">Book Now</button>
+                </div>
+              </form>
+            </div><!-- End Booking Form -->
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Booking Section -->
+
+{% endblock %}

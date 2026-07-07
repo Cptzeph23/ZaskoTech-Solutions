@@ -42,6 +42,9 @@ def mobileApp(request):
 def customSystems(request):
     return render(request, 'customSystems.html')
 
+def booking(request):
+    return render(request, 'booking.html')
+
 
 
 
