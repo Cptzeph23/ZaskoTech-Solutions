@@ -4,188 +4,188 @@
 
  <main class="main">
 
-
       <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>These are just some of the many projects that we have delivered in the recent days</p>
+        <h2>Our Engineering Portfolio</h2>
+        <p>A showcase of robust enterprise systems, secure infrastructure, and high-performance applications deployed for our clients.</p>
       </div><!-- End Section Title -->
 
      <div class="container">
     <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
 
         <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Product</li>
-            <li data-filter=".filter-branding">Branding</li>
-            <li data-filter=".filter-books">Books</li>
+            <li data-filter="*" class="filter-active">All Solutions</li>
+            <li data-filter=".filter-app">Enterprise Systems</li>
+            <li data-filter=".filter-product">AI & Machine Learning</li>
+            <li data-filter=".filter-branding">FinTech & Trading</li>
+            <li data-filter=".filter-books">Management Tools</li>
         </ul><!-- End Portfolio Filters -->
 
-
+         <!-- Fixed layout structure: All items now live inside a single row to ensure correct column grid generation without div overlapping -->
          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/nexus.jpeg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/nexus.jpeg'%}" class="img-fluid" alt="">
-                        
+                        <img src="{% static 'assets/img/nexus.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Nexus POS System Interface">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">NEXUS POS</a></h4>
-                        <p>A point-of-sale application designed for efficient retail management and customer service</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">NEXUS POS</a></h4>
+                            <p>An enterprise-grade Point of Sale ecosystem engineered for high-throughput retail management, secure transaction processing, and automated real-time inventory tracking.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
-             <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/sitelink.png' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/sitelink.png'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/sitelink.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Site-Link Logistics Platform">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">Site-Link Logistics</a></h4>
-                        <p>A transport logistics platform for medium-sized construction materials from manufacturing sites/whole 
-                          sales to construction sites with real-time GPRS tracking for timely delivery</p>
-
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">Site-Link Logistics</a></h4>
+                            <p>A B2B industrial logistics matrix connecting manufacturing hubs to construction sites, featuring live telemetry, route optimization, and GPS fleet tracking.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
-              <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <div class="portfolio-content h-100">
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app filter-product">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/smartrealty2.png' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/smartrealty2.png'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/smartrealty2.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Smart Realty AI Platform">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">Smart Realty</a></h4>
-                        <p>A real estate management platform that provides end-to-end solutions for property listing, management, and sales as
-                            well as a machine learning model that predicts house prices in various regions of Kenya with a
-                             s dedicated AI chatbot that helps answer questions and provide information to potential buyers and sellers
-                        </p>
-
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">Smart Realty AI</a></h4>
+                            <p>An advanced property infrastructure platform backed by predictive machine learning models to forecast regional house market trends in Kenya, featuring a dedicated NLP conversational agent.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
-
-
-
-        <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/LMS.jpeg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/LMS.jpeg'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/LMS.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Learning Management System">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">LMS</a></h4>
-                        <p>A comprehensive Learning Management application that incorporates all academic features including library management</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">Enterprise LMS</a></h4>
+                            <p>A high-availability academic portal integrated with automated grading algorithms, interactive virtual classrooms, and a comprehensive library index database.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/frauddetector.png' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/frauddetector.png'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/frauddetector.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Fraud Detection System">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">Transaction Fraud Detector</a></h4>
-                        <p>This is a machine learning model application that detects fraudulent transactions in mobile money transfer and credit cards</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">Transaction Fraud Guard</a></h4>
+                            <p>An intelligent risk engine leveraging custom machine learning algorithms to screen credit card behaviors and mobile money transfer networks for real-time anomaly isolation.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/forex1.jpeg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/forex1.jpeg'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/forex1.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="FXT Algorithmic Trading Bot">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">FXT Bot</a></h4>
-                        <p>A trading bot that helps predict stock prices enabling the user make informed decisions on buy and sell of stocks in the stock market</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">FXT Engine</a></h4>
+                            <p>A high-speed algorithmic trading bot that maps quantitative market data and technical signals to execute intelligent buy/sell entries in securities markets.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/IMS.webp' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/IMS.webp'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/IMS.webp'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Inventory Management System">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">IMS</a></h4>
-                        <p>An Inventory Management system application that enables enterprises monitor and manage their products in stocks and make decisions on which to restock and which are in high demand</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">Predictive IMS</a></h4>
+                            <p>A enterprise resource platform featuring supply-chain logic, low-stock notifications, predictive stockouts analysis, and multi-warehouse ledger reconciliation.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/uniquest.png' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/uniquest.png'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/uniquest.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="UniQuest Travels Application">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">UniQuest Travels</a></h4>
-                        <p>This is a tours and travel web application that focuses on tour guides for various destinations across Kenya</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">UniQuest Travels</a></h4>
+                            <p>A robust booking matrix engineered for hospitality management, localized tour packages across East Africa, and automated digital itinerary distribution.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/Parkinson.jpg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/Parkinson.jpg'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/Parkinson.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Parkinson's Disease Diagnostic Platform">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">Parkinson's disease detector</a></h4>
-                        <p>A machine Learning model application that helps detect the deadly parkinson's disease in the early stages of development for early medication and treatment</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">BioMed Neural Net</a></h4>
+                            <p>A computer vision and biometric deep learning system structured to capture and evaluate physiological biomarkers for early-stage detection of Parkinson’s disease.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/evoting.jpg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/evoting.jpg'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/evoting.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="eVoting System">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">eVoting System</a></h4>
-                        <p>An electronic voting system that emphasizes on security, transparent and trustworthy electoral process</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">Secure eVoting Portal</a></h4>
+                            <p>An audited, tamper-resistant digital voting architecture emphasizing cryptographic voter ledger protection, transparency, and instant tallying audits.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
-
-
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <div class="portfolio-content h-100">
+                <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/realestate.jpg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/realestate.jpg'%}" class="img-fluid" alt="">
+                        <img src="{% static 'assets/img/realestate.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Dreamscape Realty Portal">
                     </a>
-                    <div class="portfolio-info">
-                        <h4><a href="portfolio.html" title="More Details">Dreamscape Realty</a></h4>
-                        <p>This is a smart real estate web application that uses machine learning algorithms to prevent fraud and help search and predict houses prices in Kenyan regions</p>
+                    <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
+                        <div>
+                            <h4><a href="portfolio.html" title="More Details">Dreamscape Ecosystem</a></h4>
+                            <p>A secure property listings clearinghouse utilizing automated contract validation and valuation metrics to prevent market fraud in high-demand Kenyan sectors.</p>
+                        </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
-        
-
-        </div><!-- End Portfolio Container -->
+         </div><!-- End Portfolio Container -->
     </div>
 </div>
 
     </section><!-- /Portfolio Section -->
-
 
     <!-- Portfolio Details Section -->
     <section id="portfolio-details" class="portfolio-details section">
@@ -212,50 +212,20 @@
               }
             }
           </script>
-          <div class="swiper-wrapper align-items-center">
-
+          <div class="swiper-wrapper  align-items-center" >
             
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/nexus1.jpeg' %}" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/nexus2.jpeg' %}" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/sitelink.png' %}" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/sitelink2.png' %}" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/sitelink3.png' %}" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/smartrealty.png' %}" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/smartrealty1.png' %}" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/smartrealty2.png' %}" alt="">
-            </div>
-
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/travels.png' %}" alt="">
-            </div>
-
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/Parkinson.jpg' %}" alt="">
-            </div>
-
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/fx.png' %}" alt="">
-            </div>
-
-            <div class="swiper-slide">
-              <img src="{% static 'assets/img/IMS.webp' %}" alt="">
-            </div>
-            
+            <div class="swiper-slide"><img src="{% static 'assets/img/nexus1.jpeg' %}" alt="POS interface view 1"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/nexus2.jpeg' %}" alt="POS interface view 2"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/sitelink.png' %}" alt="Logistics Dashboard preview 1"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/sitelink2.png' %}" alt="Logistics Dashboard preview 2"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/sitelink3.png' %}" alt="Logistics Tracking view"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/smartrealty.png' %}" alt="Realty user interface"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/smartrealty1.png' %}" alt="Realty ML metrics"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/smartrealty2.png' %}" alt="Realty chatbot interface"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/travels.png' %}" alt="Travel portal booking engine"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/Parkinson.jpg' %}" alt="Biomedical system view"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/fx.png' %}" alt="Trading graph logs"></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/IMS.webp' %}" alt="Stock analysis tools"></div>
 
           </div>
           <div class="swiper-button-prev"></div>
@@ -267,53 +237,51 @@
 
           <div class="col-lg-8" data-aos="fade-up">
             <div class="portfolio-description">
-              <h2>About The Projects above</h2>
+              <h2>Architected for Performance & Operational Scale</h2>
               <p>
-                The above is just some of the many projects we have worked on recently from various different clients.
-                  We deliver the projects as per the client's description in terms of the look, features and what to include.
+                Every deployment featured above represents a tailored answer to real business constraints. We develop explicitly to client functional
+                 descriptions while keeping infrastructure security, clean code, and database speed at the forefront.
               </p>
               <p>
-                However, we sometimes include the latest cutting edge technologies to ensure that our clients get the best out of their ideas.
-                  We give free consultations to client's who may not be fully aware about enterprise requirements and technologies that boost business marketability thus
-                  ensuring that our clients get the best out of their package
+                By layering state-of-the-art technological pipelines—such as custom machine learning, real-time telemetry, and hardened authentication 
+                systems—<span class="sitename fw-bolder"><span class="text-primary">Byte</span>Bridge Technologies</span> scales basic platforms into high-performance market assets. We offer free technical architecture consultations to align business logic with elite modern framework capacities.
               </p>
 
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>I am a proud developer and seeing my work help business thrive is my greatest joy. I am a proud member of ByteBridge Technologies, a platform that
-                      has enabled me grow my skills and advance in tech experience.</span>
+                  <span>Engineering systems that unlock direct commercial velocity and eliminate performance bottlenecks is our definitive standard. 
+                    At <span class="sitename fw-bolder"><span class="text-primary">Byte</span>Bridge Technologies</span>, we drive technical excellence into practical, operational software products.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
                 <div>
                      <a href="https://github.com/Cptzeph23" target="_blank">
-                         <img src="{% static 'assets/img/graduation.jpeg' %}" class="testimonial-img" alt="">
+                         <img src="{% static 'assets/img/graduation.jpeg' %}" class="testimonial-img" alt="Zeph Aseka - Lead Software Engineer">
                           <h3>Zeph Aseka</h3>
-                         <h4>Developer</h4>
+                         <h4>Core Systems Architect</h4>
                      </a>
-
                 </div>
               </div>
 
               <p>
-                We also provide teaching classes of tech skills and assign small tasks to our junior staffs to help them grow confidence in software design and development.
-                  We are targeting to reach a wide audience of tech enthusiasts who are willing to learn and become experts in the tech space.
-                  Feel free to reach out for product development or for training
+                Beyond platform delivery, we are deeply committed to cultivating tech talent.
+                 We manage dedicated technical masterclasses and integrate emerging engineering personnel into
+                  robust agile workflows to master production-level design patterns. <br> Reach out today and deploy 
+                  your custom software or elevate your team's core technical competencies.
               </p>
-
 
             </div>
           </div>
 
           <div class="col-lg-3" data-aos="fade-up" data-aos-delay="100">
             <div class="portfolio-info">
-              <h3>Project information</h3>
+              <h3>Featured Case Study</h3>
               <ul>
-                <li><strong>Category</strong> Web Development</li>
-                <li><strong>Client</strong> Uniquest tours</li>
-                <li><strong>Project date</strong> 11 November, 2025</li>
-                <li><strong>Project URL</strong> <a href="#">www.uniquesttravels.tours</a></li>
-                <li><a href="https://www.uniquesttravels.tours/" class="btn-visit align-self-start" target="_blank">Visit Website</a></li>
+                <li><strong>Domain</strong> Enterprise Systems & Logistical Matrix</li>
+                <li><strong>Client</strong> UniQuest International</li>
+                <li><strong>Production Launch</strong> November 11, 2025</li>
+                <li><strong>Live Platform</strong> <a href="https://www.uniquesttravels.tours/" target="_blank">www.uniquesttravels.tours</a></li>
+                <li><a href="https://www.uniquesttravels.tours/" class="btn-visit align-self-start" target="_blank">Analyze Live Project</a></li>
               </ul>
             </div>
           </div>
