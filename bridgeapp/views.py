@@ -45,6 +45,8 @@ def customSystems(request):
 def booking(request):
     return render(request, 'booking.html')
 
+def testimonials(request):
+    return render(request, 'testimonials.html')
 
 
 

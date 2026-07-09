@@ -15,5 +15,6 @@ urlpatterns = [
     path('mobileApp/', views.mobileApp, name='mobileApp'),
     path('customSystems/', views.customSystems, name='customSystems'),
     path('booking/', views.booking, name='booking'),
+    path('testimonials/', views.testimonials, name='testimonials'),
 
 ]
