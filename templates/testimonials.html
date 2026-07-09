@@ -1,32 +1,436 @@
-{% extends "stater-page.html" %}
+{% extends 'starter-page.html' %}
 {% load static %}
 {% block body %}
 
-<main>
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="container">
-            <h2 class="section-title">What Our Clients Say</h2>
-            <div class="testimonials-slider">
-                <div class="testimonial">
-                    <p class="testimonial-text">"This company provided excellent service and support. Highly recommend!"</p>
-                    <h3 class="testimonial-author">- John Doe</h3>
+<style>
+  .testimonials-page {
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 40%, #f4f9ff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonials-page::before,
+  .testimonials-page::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .testimonials-page::before {
+    width: 260px;
+    height: 260px;
+    top: -90px;
+    right: -80px;
+    background: rgba(3, 109, 218, 0.08);
+  }
+
+  .testimonials-page::after {
+    width: 200px;
+    height: 200px;
+    left: -70px;
+    bottom: 40px;
+    background: rgba(13, 48, 53, 0.05);
+  }
+
+  .testimonials-shell {
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-hero-badge,
+  .testimonial-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    border-radius: 999px;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .testimonial-hero-badge {
+    padding: .55rem .9rem;
+    background: rgba(3, 109, 218, 0.10);
+    color: #036dda;
+  }
+
+  .testimonials-hero h2 {
+    margin: 1rem 0 .9rem;
+    color: #0d3035;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.08;
+    font-weight: 800;
+  }
+
+  .testimonials-hero p {
+    margin: 0;
+    max-width: 62ch;
+    color: #555555;
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+
+  .testimonial-panel {
+    height: 100%;
+    padding: 1.75rem;
+    border: 1px solid rgba(13, 48, 53, 0.08);
+    border-radius: 1.75rem;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 20px 60px rgba(13, 48, 53, 0.08);
+    backdrop-filter: blur(8px);
+  }
+
+  .testimonial-panel h3 {
+    margin: .9rem 0 .6rem;
+    color: #0d3035;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  .testimonial-panel p {
+    margin: 0;
+    line-height: 1.8;
+    color: #555555;
+  }
+
+  .testimonial-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .85rem;
+    margin-top: 1.35rem;
+  }
+
+  .testimonial-stat {
+    padding: .9rem .75rem;
+    border-radius: 1.1rem;
+    background: rgba(13, 48, 53, 0.04);
+    text-align: center;
+  }
+
+  .testimonial-stat strong {
+    display: block;
+    color: #0d3035;
+    font-size: 1.2rem;
+    line-height: 1.1;
+  }
+
+  .testimonial-stat span {
+    display: block;
+    margin-top: .25rem;
+    color: #555555;
+    font-size: .84rem;
+  }
+
+  .testimonial-card {
+    height: 100%;
+    padding: 1.35rem 1.35rem 1.2rem;
+    border: 1px solid rgba(13, 48, 53, 0.08);
+    border-radius: 1.45rem;
+    background: #ffffff;
+    box-shadow: 0 14px 40px rgba(13, 48, 53, 0.06);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(3, 109, 218, 0.18);
+    box-shadow: 0 24px 50px rgba(13, 48, 53, 0.10);
+  }
+
+  .testimonial-card-head {
+    display: flex;
+    align-items: flex-start;
+    gap: .85rem;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(3, 109, 218, 0.14);
+    margin-top: 2px;
+  }
+
+  .testimonial-person {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .testimonial-person h3 {
+    margin: 0;
+    color: #0d3035;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  .testimonial-person p {
+    margin: .2rem 0 0;
+    color: #6c757d;
+    font-size: .88rem;
+    line-height: 1.45;
+  }
+
+  .testimonial-rating {
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding: .45rem .7rem;
+    border-radius: 999px;
+    background: rgba(3, 109, 218, 0.10);
+    color: #036dda;
+    font-size: .82rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .testimonial-quote {
+    margin: 0;
+    color: #555555;
+    line-height: 1.8;
+  }
+
+  .testimonial-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: 1rem;
+  }
+
+  .testimonial-chip {
+    padding: .4rem .7rem;
+    background: rgba(13, 48, 53, 0.05);
+    color: #0d3035;
+  }
+
+  .testimonial-card--featured {
+    background: linear-gradient(180deg, #ffffff 0%, #f3f8ff 100%);
+    border-color: rgba(3, 109, 218, 0.14);
+  }
+
+  .testimonials-cta {
+    margin-top: 1.25rem;
+    padding: 1.5rem 1.5rem;
+    border-radius: 1.6rem;
+    border: 1px solid rgba(3, 109, 218, 0.12);
+    background: linear-gradient(135deg, rgba(3, 109, 218, 0.10), rgba(13, 48, 53, 0.04));
+  }
+
+  .testimonials-cta span {
+    display: inline-block;
+    margin-bottom: .45rem;
+    color: #036dda;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .testimonials-cta h3 {
+    margin: 0 0 .6rem;
+    color: #0d3035;
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+
+  .testimonials-cta p {
+    margin: 0;
+    color: #555555;
+    max-width: 60ch;
+  }
+
+  @media (max-width: 991.98px) {
+    .testimonial-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonials-cta {
+      padding: 1.25rem;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .testimonial-panel,
+    .testimonial-card {
+      padding: 1.15rem;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      flex-basis: 44px;
+    }
+  }
+</style>
+
+<section id="testimonials" class="testimonials-page py-5">
+    <div class="container testimonials-shell py-4">
+        <div class="row align-items-end g-4 mb-4 mb-lg-5">
+            <div class="col-lg-7" data-aos="fade-up">
+                <div class="testimonials-hero">
+                    <span class="testimonial-hero-badge">Client Voices</span>
+                    <h2>Professional delivery, thoughtful communication, and results people trust.</h2>
+                    <p>
+                        These stories reflect how ByteBridge Technologies approaches every build: clear discovery,
+                        disciplined execution, and a finish that feels polished when it goes live.
+                    </p>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"A wonderful experience from start to finish. The team was professional and attentive."</p>
-                    <h3 class="testimonial-author">- Jane Smith</h3>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"I am extremely satisfied with the results. The quality exceeded my expectations!"</p>
-                    <h3 class="testimonial-author">- Michael Johnson</h3>
+            </div>
+
+            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-panel">
+                    <span class="testimonial-hero-badge">Why clients stay with us</span>
+                    <h3>We design for clarity, speed, and confidence.</h3>
+                    <p>
+                        From websites and mobile apps to cloud systems and workflow automation, our work is built
+                        to reduce friction and help teams move faster.
+                    </p>
+                    <div class="testimonial-stats">
+                        <div class="testimonial-stat">
+                            <strong>5</strong>
+                            <span>featured voices</span>
+                        </div>
+                        <div class="testimonial-stat">
+                            <strong>4</strong>
+                            <span>core specialties</span>
+                        </div>
+                        <div class="testimonial-stat">
+                            <strong>100%</strong>
+                            <span>custom approach</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <article class="testimonial-card">
+                    <div class="testimonial-card-head">
+                        <img class="testimonial-avatar" src="{% static 'assets/img/person/person-f-3.webp' %}" alt="Grace Wanjiku">
+                        <div class="testimonial-person">
+                            <h3>Grace Wanjiku</h3>
+                            <p>Operations Manager, Summit Logistics</p>
+                        </div>
+                        <span class="testimonial-rating"><i class="bi bi-star-fill me-1"></i>5.0</span>
+                    </div>
+                    <p class="testimonial-quote">
+                        ByteBridge turned our manual booking process into a clean dashboard that our dispatch team
+                        actually enjoys using. Communication stayed crisp, timelines were respected, and the final
+                        result felt production-ready from day one.
+                    </p>
+                    <div class="testimonial-tag-list">
+                        <span class="testimonial-chip">Logistics Platform</span>
+                        <span class="testimonial-chip">Automation</span>
+                    </div>
+                </article>
+            </div>
 
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <article class="testimonial-card">
+                    <div class="testimonial-card-head">
+                        <img class="testimonial-avatar" src="{% static 'assets/img/person/person-m-2.webp' %}" alt="Daniel Okoth">
+                        <div class="testimonial-person">
+                            <h3>Daniel Okoth</h3>
+                            <p>Founder, Nexus Realty</p>
+                        </div>
+                        <span class="testimonial-rating"><i class="bi bi-star-fill me-1"></i>5.0</span>
+                    </div>
+                    <p class="testimonial-quote">
+                        They helped us sharpen both the design and the backend of our property platform. What stood
+                        out most was their ability to translate business goals into features without overcomplicating
+                        the product.
+                    </p>
+                    <div class="testimonial-tag-list">
+                        <span class="testimonial-chip">Web App</span>
+                        <span class="testimonial-chip">UX</span>
+                        <span class="testimonial-chip">Backend</span>
+                    </div>
+                </article>
+            </div>
 
-</main>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <article class="testimonial-card">
+                    <div class="testimonial-card-head">
+                        <img class="testimonial-avatar" src="{% static 'assets/img/person/person-f-5.webp' %}" alt="Amina Patel">
+                        <div class="testimonial-person">
+                            <h3>Amina Patel</h3>
+                            <p>Product Lead, FinEdge Africa</p>
+                        </div>
+                        <span class="testimonial-rating"><i class="bi bi-star-fill me-1"></i>5.0</span>
+                    </div>
+                    <p class="testimonial-quote">
+                        Our fintech prototype needed speed, reliability, and security. ByteBridge delivered all three,
+                        and their team made the technical choices easy to understand for our non-engineering
+                        stakeholders.
+                    </p>
+                    <div class="testimonial-tag-list">
+                        <span class="testimonial-chip">Fintech</span>
+                        <span class="testimonial-chip">Security</span>
+                        <span class="testimonial-chip">API Integration</span>
+                    </div>
+                </article>
+            </div>
 
+            <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <article class="testimonial-card testimonial-card--featured">
+                    <div class="testimonial-card-head">
+                        <img class="testimonial-avatar" src="{% static 'assets/img/person/person-m-9.webp' %}" alt="Peter Mwangi">
+                        <div class="testimonial-person">
+                            <h3>Peter Mwangi</h3>
+                            <p>ICT Director, Greenfield Academy</p>
+                        </div>
+                        <span class="testimonial-rating"><i class="bi bi-star-fill me-1"></i>5.0</span>
+                    </div>
+                    <p class="testimonial-quote">
+                        From admissions workflows to parent communication, they built a system that reduced repetitive
+                        admin work and made reporting much simpler. The rollout was smooth and well supported.
+                    </p>
+                    <div class="testimonial-tag-list">
+                        <span class="testimonial-chip">School System</span>
+                        <span class="testimonial-chip">Workflow</span>
+                        <span class="testimonial-chip">Reporting</span>
+                    </div>
+                </article>
+            </div>
 
+            <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <article class="testimonial-card">
+                    <div class="testimonial-card-head">
+                        <img class="testimonial-avatar" src="{% static 'assets/img/person/person-f-8.webp' %}" alt="Sarah Otieno">
+                        <div class="testimonial-person">
+                            <h3>Sarah Otieno</h3>
+                            <p>Co-founder, CloudNine Health</p>
+                        </div>
+                        <span class="testimonial-rating"><i class="bi bi-star-fill me-1"></i>5.0</span>
+                    </div>
+                    <p class="testimonial-quote">
+                        They listened carefully, proposed a practical roadmap, and shipped a patient-facing platform
+                        that feels polished and stable. The attention to detail in the UI and data handling was
+                        exactly what we needed.
+                    </p>
+                    <div class="testimonial-tag-list">
+                        <span class="testimonial-chip">Health Tech</span>
+                        <span class="testimonial-chip">UI</span>
+                        <span class="testimonial-chip">Cloud Deployment</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="testimonials-cta mt-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+                <div>
+                    <span>Next step</span>
+                    <h3>Looking for the same level of care on your next project?</h3>
+                    <p>Let's build something polished, practical, and easy for your team to use.</p>
+                </div>
+                <a href="{% url 'contact' %}" class="btn btn-primary px-4 py-2 fw-semibold align-self-start align-self-lg-center">Start a conversation</a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
