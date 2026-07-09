@@ -10,7 +10,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Our Engineering Portfolio</h2>
-        <p>A showcase of robust enterprise systems, secure infrastructure, and high-performance applications deployed for our clients.</p>
+        <p>A deep dive into the complex challenges we have solved, the systems we built, and the enterprise technologies that power them.</p>
       </div><!-- End Section Title -->
 
      <div class="container">
@@ -24,158 +24,290 @@
             <li data-filter=".filter-books">Management Tools</li>
         </ul><!-- End Portfolio Filters -->
 
-         <!-- Fixed layout structure: All items now live inside a single row to ensure correct column grid generation without div overlapping -->
+         <!-- Fixed layout structure with deep technical case breakdowns for a premium marketing edge -->
          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
+            <!-- NEXUS POS -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/nexus.jpeg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/nexus.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Nexus POS System Interface">
+                        <img src="{% static 'assets/img/nexus.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="Nexus POS System Interface">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">NEXUS POS</a></h4>
-                            <p>An enterprise-grade Point of Sale ecosystem engineered for high-throughput retail management, secure transaction processing, and automated real-time inventory tracking.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Retail clients faced severe revenue leakage, missing stock records, and slow customer checkout queues during peak store hours.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Engineered a high-throughput Point of Sale ecosystem featuring instantaneous barcode scanning, secure ledger entry, and live offline-first data sync.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>Python</code>, <code>Django</code>, <code>PostgreSQL</code>, <code>SQLite</code>, <code>Bootstrap 5</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- Site-Link Logistics -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/sitelink.png' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/sitelink.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Site-Link Logistics Platform">
+                        <img src="{% static 'assets/img/sitelink.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="Site-Link Logistics Platform">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">Site-Link Logistics</a></h4>
-                            <p>A B2B industrial logistics matrix connecting manufacturing hubs to construction sites, featuring live telemetry, route optimization, and GPS fleet tracking.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Industrial suppliers struggled with opaque delivery chains, transit material theft, and lack of accountability between hubs and sites.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Built a complex B2B logistics platform featuring real-time GPRS telemetry tracking, automatic dispatch routing, and digital proof-of-delivery receipts.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>PHP</code>, <code>Laravel</code>, <code>MySQL</code>, <code>Google Maps API</code>, <code>GPRS Webhooks</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- Smart Realty AI -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app filter-product">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/smartrealty2.png' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/smartrealty2.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Smart Realty AI Platform">
+                        <img src="{% static 'assets/img/smartrealty2.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="Smart Realty AI Platform">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
-                            <h4><a href="portfolio.html" title="More Details">Smart Realty</a></h4>
-                            <p>An advanced real estate property infrastructure platform for listing and finding properties, houses and homes backed by predictive machine learning models to forecast regional house market trends in Kenya, featuring a dedicated NLP chatbot conversational agent.</p>
+                            <h4><a href="portfolio.html" title="More Details">Smart Realty AI</a></h4>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Buyers encountered immense real estate fraud in Kenya, while sellers lacked scientific price valuation metrics for changing regional markets.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Developed a property matrix backed by a predictive Machine Learning model for forecasting home prices alongside an NLP conversational AI assistant.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>Python</code>, <code>Scikit-Learn</code>, <code>Django</code>, <code>OpenAI API</code>, <code>PostgreSQL</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- Enterprise LMS -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/LMS.jpeg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/LMS.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Learning Management System">
+                        <img src="{% static 'assets/img/LMS.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="Learning Management System">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">Enterprise LMS</a></h4>
-                            <p>A high-availability academic portal integrated with automated grading algorithms, interactive virtual classrooms, and a comprehensive library index database.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Institutions used fragmented tools for grading, class schedules, and library catalogs, crippling administration workflow speeds.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Engineered a single high-availability portal coordinating academic management, student tracking, and deep relational library indexing.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>PHP</code>, <code>Laravel</code>, <code>MySQL</code>, <code>Alpine.js</code>, <code>TailwindCSS</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- Transaction Fraud Guard -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/frauddetector.png' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/frauddetector.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Fraud Detection System">
+                        <img src="{% static 'assets/img/frauddetector.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="Fraud Detection System">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">Transaction Fraud Guard</a></h4>
-                            <p>An intelligent risk engine leveraging custom machine learning algorithms to screen credit card behaviors and mobile money transfer networks for real-time anomaly isolation.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">FinTech nodes suffered heavy financial blows due to complex, high-speed credential exploitation and anomalous credit routing patterns.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Designed a real-time risk evaluation engine utilizing classification models to instantly screen data features and flag or freeze suspicious transactions.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>Python</code>, <code>Pandas</code>, <code>XGBoost</code>, <code>FastAPI</code>, <code>Docker</code>, <code>Redis</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- FXT Engine -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/forex1.jpeg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/forex1.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="FXT Algorithmic Trading Bot">
+                        <img src="{% static 'assets/img/forex1.jpeg'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="FXT Algorithmic Trading Bot">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">FXT Engine</a></h4>
-                            <p>A high-speed algorithmic trading bot that maps quantitative market data and technical signals to execute intelligent buy/sell entries in securities markets.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Retail investors lacked the mathematical speed required to track volatile tickers and execute orders before market shifts neutralized spreads.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Built a highly performant quantitative trading algorithm engine that reads data signals, matches patterns, and deploys rapid orders.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>Python</code>, <code>NumPy</code>, <code>MetaTrader API</code>, <code>WebSockets</code>, <code>PostgreSQL</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- Predictive IMS -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/IMS.webp' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/IMS.webp'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Inventory Management System">
+                        <img src="{% static 'assets/img/IMS.webp'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="Inventory Management System">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">Predictive IMS</a></h4>
-                            <p>A enterprise resource platform featuring supply-chain logic, low-stock notifications, predictive stockouts analysis, and multi-warehouse ledger reconciliation.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Mid-scale warehouses frequently over-ordered dead stock while simultaneously failing to notice critical stockouts on high-velocity items.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Developed an ERP system mapping multi-warehouse ledgers, integrating low-threshold triggers and automatic demand forecasting models.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>Python</code>, <code>Django</code>, <code>Celery</code>, <code>Redis</code>, <code>PostgreSQL</code>, <code>HTMX</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- UniQuest Travels -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/uniquest.png' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/uniquest.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="UniQuest Travels Application">
+                        <img src="{% static 'assets/img/uniquest.png'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="UniQuest Travels Application">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">UniQuest Travels</a></h4>
-                            <p>A robust booking matrix engineered for hospitality management, localized tour packages across East Africa, and automated digital itinerary distribution.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Tour operations relied on chaotic manual itinerary updates, leading to double-booking friction and poor travel synchronization.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Created a multi-seller booking engine and itinerary constructor optimized for regional operators and automated voucher generation.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>Python</code>, <code>Django</code>, <code>Safaricom Daraja API</code>, <code>MySQL</code>, <code>Bootstrap 5</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- BioMed Neural Net -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/Parkinson.jpg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/Parkinson.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Parkinson's Disease Diagnostic Platform">
+                        <img src="{% static 'assets/img/Parkinson.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="Parkinson's Disease Diagnostic Platform">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">BioMed Neural Net</a></h4>
-                            <p>A computer vision and biometric deep learning system structured to capture and evaluate physiological biomarkers for early-stage detection of Parkinson’s disease.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Traditional diagnostic methods for neuromuscular issues require clinical monitoring, delaying early neurodegenerative detection.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Engineered a convolutional deep learning network capable of reading and processing physiological handwriting data and vocal tremors.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>Python</code>, <code>TensorFlow</code>, <code>Keras</code>, <code>OpenCV</code>, <code>Streamlit</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- Secure eVoting Portal -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/evoting.jpg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/evoting.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="eVoting System">
+                        <img src="{% static 'assets/img/evoting.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="eVoting System">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">Secure eVoting Portal</a></h4>
-                            <p>An audited, tamper-resistant digital voting architecture emphasizing cryptographic voter ledger protection, transparency, and instant tallying audits.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Digital voting networks are highly vulnerable to database manipulation, man-in-the-middle exploits, and structural tally tampering.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Designed an immutable, cryptographically secure architecture ensuring anonymous voter tokens and automated verifiable audit logging.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>PHP</code>, <code>Laravel</code>, <code>AES-256 Encryption</code>, <code>MySQL</code>, <code>Alpine.js</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div><!-- End Portfolio Item -->
 
+            <!-- Dreamscape Ecosystem -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                 <div class="portfolio-content h-100 d-flex flex-column justify-content-between">
                     <a href="{% static 'assets/img/realestate.jpg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
-                        <img src="{% static 'assets/img/realestate.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 230px;" alt="Dreamscape Realty Portal">
+                        <img src="{% static 'assets/img/realestate.jpg'%}" class="img-fluid w-100" style="object-fit: cover; height: 200px;" alt="Dreamscape Realty Portal">
                     </a>
                     <div class="portfolio-info flex-grow-1 d-flex flex-column justify-content-between p-3">
                         <div>
                             <h4><a href="portfolio.html" title="More Details">Dreamscape Ecosystem</a></h4>
-                            <p>A secure property listings clearinghouse utilizing automated contract validation and valuation metrics to prevent market fraud in high-demand Kenyan sectors.</p>
+                            <div class="mb-2">
+                                <strong class="text-danger small"><i class="bi bi-exclamation-triangle"></i> Problem:</strong>
+                                <p class="small text-muted mb-1">Property listing portals suffer from ghost listings, outdated price parameters, and lack of verified land coordinates.</p>
+                            </div>
+                            <div class="mb-2">
+                                <strong class="text-success small"><i class="bi bi-lightning-charge"></i> Solution:</strong>
+                                <p class="small text-muted mb-1">Deployed a smart real estate system using data pipeline filters to purge bad listings and predict true regional land valuations.</p>
+                            </div>
+                            <div class="mt-2">
+                                <strong class="text-primary small"><i class="bi bi-cpu"></i> Tech Stack:</strong>
+                                <p class="small text-dark mb-0"><code>Python</code>, <code>Django</code>, <code>Pandas</code>, <code>PostGIS</code>, <code>Bootstrap 5</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -212,7 +344,7 @@
               }
             }
           </script>
-          <div class="swiper-wrapper  align-items-center" >
+          <div class="swiper-wrapper align-items-center">
             
             <div class="swiper-slide"><img src="{% static 'assets/img/nexus1.jpeg' %}" alt="POS interface view 1"></div>
             <div class="swiper-slide"><img src="{% static 'assets/img/nexus2.jpeg' %}" alt="POS interface view 2"></div>
@@ -239,19 +371,16 @@
             <div class="portfolio-description">
               <h2>Architected for Performance & Operational Scale</h2>
               <p>
-                Every deployment featured above represents a tailored answer to real business constraints. We develop explicitly to client functional
-                 descriptions while keeping infrastructure security, clean code, and database speed at the forefront.
+                Every deployment featured above represents a tailored answer to real business constraints. We develop explicitly to client functional descriptions while keeping infrastructure security, clean code, and database speed at the forefront.
               </p>
               <p>
-                By layering state-of-the-art technological pipelines—such as custom machine learning, real-time telemetry, and hardened authentication 
-                systems—<span class="sitename fw-bolder"><span class="text-primary">Byte</span>Bridge Technologies</span> scales basic platforms into high-performance market assets. We offer free technical architecture consultations to align business logic with elite modern framework capacities.
+                By layering state-of-the-art technological pipelines—such as custom machine learning, real-time telemetry, and hardened authentication systems—ByteBridge Technologies scales basic platforms into high-performance market assets. We offer free technical architecture consultations to align business logic with elite modern framework capacities.
               </p>
 
               <div class="testimonial-item">
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Engineering systems that unlock direct commercial velocity and eliminate performance bottlenecks is our definitive standard. 
-                    At <span class="sitename fw-bolder"><span class="text-primary">Byte</span>Bridge Technologies</span>, we drive technical excellence into practical, operational software products.</span>
+                  <span>Engineering systems that unlock direct commercial velocity and eliminate performance bottlenecks is our definitive standard. At ByteBridge Technologies, we drive technical excellence into practical, operational software products.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
                 <div>
@@ -264,10 +393,7 @@
               </div>
 
               <p>
-                Beyond platform delivery, we are deeply committed to cultivating tech talent.
-                 We manage dedicated technical masterclasses and integrate emerging engineering personnel into
-                  robust agile workflows to master production-level design patterns. <br> Reach out today and deploy 
-                  your custom software or elevate your team's core technical competencies.
+                Beyond platform delivery, we are deeply committed to cultivating tech talent. We manage dedicated technical masterclasses and integrate emerging engineering personnel into robust agile workflows to master production-level design patterns. Reach out to deploy your custom software or elevate your team's core technical competencies.
               </p>
 
             </div>
@@ -280,7 +406,7 @@
                 <li><strong>Domain</strong> Enterprise Systems & Logistical Matrix</li>
                 <li><strong>Client</strong> UniQuest International</li>
                 <li><strong>Production Launch</strong> November 11, 2025</li>
-                <li><strong>Live Platform</strong> <a href="https://www.uniquesttravels.tours/" target="_blank">www.uniquesttravels.tours</a></li>
+                <li><strong>Live Platform</strong> <a href="#">www.uniquesttravels.tours</a></li>
                 <li><a href="https://www.uniquesttravels.tours/" class="btn-visit align-self-start" target="_blank">Analyze Live Project</a></li>
               </ul>
             </div>
