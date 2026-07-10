@@ -1,5 +1,7 @@
+from email.message import Message
+
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Contact, NewsLetter
 
 def index(request):
@@ -18,7 +20,30 @@ def about(request):
     return render(request, 'about.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
+        subject = request.POST.get('subject', '').strip()
+        message = request.POST.get('message', '').strip()
+
+        # Basic safety validation check
+        if not all([name, email, subject, message]):
+            return JsonResponse({'error': 'All fields are required.'}, status=400)
+
+        try:
+            mymessage = Contact(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message,
+            )
+            mymessage.save()
+            return JsonResponse({'success': True}, status=200)
+        except Exception as e:
+            return JsonResponse({'error': 'An error occurred while saving your message.'}, status=500)
+            
+    else:
+        return render(request, 'contact.html')
 
 def terms(request):
     return render(request, 'T&C.html')

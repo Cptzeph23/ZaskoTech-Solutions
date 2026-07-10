@@ -59,42 +59,98 @@
               <h3>Get In Touch</h3>
               <p>Send Us a Message!</p>
 
-              <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-                <div class="row gy-4">
+              <form action="{% url 'contact' %}" method="post" id="contact-form" data-aos="fade-up" data-aos-delay="200">
+              {% csrf_token %}
+              <div class="row gy-4">
 
-                  <div class="col-md-6">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                  </div>
-
-                  <div class="col-md-6 ">
-                    <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                  </div>
-
-                  <div class="col-12">
-                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                  </div>
-
-                  <div class="col-12">
-                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                  </div>
-
-                  <div class="col-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                    <button type="submit" class="btn">Send Message</button>
-                  </div>
-
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                 </div>
-              </form>
 
+                <div class="col-md-6">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                </div>
+
+                <div class="col-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                </div>
+
+                <div class="col-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                </div>
+
+                <div class="col-12 text-center">
+                  <div class="loading" style="display: none; color: #fff; margin-bottom: 15px;">Loading...</div>
+                  <div class="error-message" style="display: none; background: #df1515; color: #fff; padding: 10px; margin-bottom: 15px; font-weight: 600;"></div>
+                  <div class="sent-message" style="display: none; background: #18d26e; color: #fff; padding: 10px; margin-bottom: 15px; font-weight: 600;">Your message has been sent. Thank you!</div>
+
+                  <button type="submit" class="btn" style="background: #007bff; color: #fff; padding: 10px 30px; border: none; border-radius: 15px;">Send Message</button>
+                </div>
+
+              </div>
+            </form>
             </div>
           </div>
 
         </div>
 
       </div>
+      <script>
+          document.getElementById('contact-form').addEventListener('submit', function(e) {
+              e.preventDefault(); // Stop page from doing a hard reload
+
+              const form = this;
+              const formData = new FormData(form);
+              const loading = form.querySelector('.loading');
+              const errorMessage = form.querySelector('.error-message');
+              const sentMessage = form.querySelector('.sent-message');
+
+              // Show loading indicator, clear out previous alerts
+              loading.style.display = 'block';
+              errorMessage.style.display = 'none';
+              sentMessage.style.display = 'none';
+
+              fetch(form.action, {
+                  method: 'POST',
+                  body: formData,
+                  headers: {
+                      'X-Requested-With': 'XMLHttpRequest'
+                  }
+              })
+              .then(response => response.json().then(data => ({ status: response.status, body: data })))
+              .then(res => {
+                  loading.style.display = 'none';
+
+                  if (res.status === 200) {
+                      // Message successfully saved
+                      sentMessage.style.display = 'block';
+                      form.reset(); // Wipe form text clean
+
+                      // Dismiss the alert smoothly after 4 seconds
+                      setTimeout(() => {
+                          sentMessage.style.display = 'none';
+                      }, 4000);
+                  } else {
+                      // Display standard validation or server errors cleanly
+                      errorMessage.textContent = res.body.error || 'Failed to send message. Please check fields.';
+                      errorMessage.style.display = 'block';
+
+                      setTimeout(() => {
+                          errorMessage.style.display = 'none';
+                      }, 4000);
+                  }
+              })
+              .catch(error => {
+                  loading.style.display = 'none';
+                  errorMessage.textContent = 'A connection error occurred. Please try again.';
+                  errorMessage.style.display = 'block';
+                  
+                  setTimeout(() => {
+                      errorMessage.style.display = 'none';
+                  }, 4000);
+              });
+          });
+          </script>
 
     </section><!-- /Contact Section -->
 
