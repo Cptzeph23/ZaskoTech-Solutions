@@ -106,23 +106,29 @@
 
   <footer id="footer" class="footer dark-background">
 
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-            <form action="{% url 'newsletter' %}" method="post" class="php-email-form">
-              {% csrf_token %}
-              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe" required></div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
+  <div class="footer-newsletter">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-6">
+        <h4>Join Our Newsletter</h4>
+        <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+        
+        <form action="{% url 'newsletter' %}" method="post" id="newsletter-form">
+          {% csrf_token %}
+          <div class="newsletter-form">
+            <input type="email" name="email" required>
+            <input type="submit" value="Subscribe">
           </div>
-        </div>
+          
+          <div class="loading" style="display: none; color: #fff; margin-top: 15px;">Loading...</div>
+          <div class="error-message" style="display: none; background: #df1515; color: #fff; padding: 10px; margin-top: 15px; font-weight: 600;"></div>
+          <div class="sent-message" style="display: none; background: #18d26e; color: #fff; padding: 10px; margin-top: 15px; font-weight: 600;">Your subscription request has been sent. Thank you!</div>
+        </form>
+
       </div>
     </div>
+  </div>
+</div>
 
     <div class="container footer-top">
       <div class="row gy-4">
@@ -211,6 +217,63 @@
 
   <!-- Main JS File -->
   <script src="{% static 'assets/js/main.js' %}" defer></script>
+
+  <script>
+document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop page reload
+
+    const form = this;
+    const formData = new FormData(form);
+    const loading = form.querySelector('.loading');
+    const errorMessage = form.querySelector('.error-message');
+    const sentMessage = form.querySelector('.sent-message');
+
+    // Show loading, hide previous messages
+    loading.style.display = 'block';
+    errorMessage.style.display = 'none';
+    sentMessage.style.display = 'none';
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json().then(data => ({ status: response.status, body: data })))
+    .then(res => {
+        loading.style.display = 'none';
+
+        if (res.status === 200) {
+            // Success! Show green message
+            sentMessage.style.display = 'block';
+            form.reset(); // Clear the input field
+
+            // Disappear smoothly after 4 seconds
+            setTimeout(() => {
+                sentMessage.style.display = 'none';
+            }, 4000);
+        } else {
+            // Server error (e.g., 400 Bad Request for duplicate email)
+            errorMessage.textContent = res.body.error || 'Failed! Check your email address.';
+            errorMessage.style.display = 'block';
+
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 4000);
+        }
+    })
+    .catch(error => {
+        loading.style.display = 'none';
+        errorMessage.textContent = 'An unexpected error occurred. Please try again.';
+        errorMessage.style.display = 'block';
+        
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 4000);
+    });
+});
+</script>
 
 </body>
 

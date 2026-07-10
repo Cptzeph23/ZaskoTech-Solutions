@@ -1,4 +1,4 @@
-
+from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Contact, NewsLetter
 
@@ -49,13 +49,22 @@ def testimonials(request):
 
 def newsletter(request):
     if request.method == 'POST':
-        subscriber = NewsLetter(
-            email = request.POST.get('email')
-        )
-        subscriber.save()
-        return render(request, 'index.html', {'success': True})
-    else:
-        return render(request, 'index.html')
+        email_address = request.POST.get('email', '').strip()
+        
+        if not email_address:
+            return JsonResponse({'error': 'Email field cannot be empty.'}, status=400)
+            
+        if NewsLetter.objects.filter(email=email_address).exists():
+            return JsonResponse({'error': 'This email is already subscribed!'}, status=400)
+            
+        try:
+            subscriber = NewsLetter(email=email_address)
+            subscriber.save()
+            return JsonResponse({'success': True}, status=200)
+        except Exception as e:
+            return JsonResponse({'error': 'Failed! Check your email address.'}, status=500)
+            
+    return JsonResponse({'error': 'Invalid request.'}, status=400)
 
 
 
