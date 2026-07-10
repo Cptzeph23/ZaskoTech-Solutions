@@ -1,10 +1,13 @@
 from datetime import date
+from datetime import time as time_cls
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.core.mail import EmailMessage
 from django.core.validators import validate_email
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from .models import Contact, NewsLetter
+from .models import BookingRequest, Contact, NewsLetter
 
 def index(request):
     return render(request, 'index.html')
@@ -96,6 +99,11 @@ def booking(request):
         except ValueError:
             return HttpResponse('Please choose a valid booking date.', status=400)
 
+        try:
+            requested_time = time_cls.fromisoformat(preferred_time)
+        except ValueError:
+            return HttpResponse('Please choose a valid booking time.', status=400)
+
         if requested_date < date.today():
             return HttpResponse('Please choose a future booking date.', status=400)
 
@@ -115,14 +123,51 @@ def booking(request):
             'Project notes:',
             message,
         ]
+        email_body = '\n'.join([line for line in details if line is not None])
 
         try:
-            Contact.objects.create(
+            booking_request = BookingRequest.objects.create(
                 name=name,
                 email=email,
-                subject=subject,
-                message='\n'.join([line for line in details if line is not None]),
+                company=company,
+                phone=phone,
+                service=service,
+                project_type=project_type,
+                preferred_date=requested_date,
+                preferred_time=requested_time,
+                budget=budget,
+                preferred_contact=preferred_contact,
+                message=message,
+                consent=bool(consent),
             )
+            notification = EmailMessage(
+                subject=subject,
+                body=(
+                    'A new booking request has been submitted.\n\n'
+                    f'{email_body}\n\n'
+                    f'Status: {booking_request.get_status_display()}\n'
+                    f'Reply to: {email} / {phone}'
+                ),
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[settings.BOOKING_NOTIFICATION_EMAIL],
+                reply_to=[email],
+            )
+            notification.send(fail_silently=False)
+
+            if getattr(settings, 'BOOKING_COPY_TO_CUSTOMER', False):
+                EmailMessage(
+                    subject='We received your booking request',
+                    body=(
+                        f'Hi {name},\n\n'
+                        'Thanks for booking with ByteBridge Technologies. We have received your request and will get back to you shortly.\n\n'
+                        f'Your request summary:\n{email_body}\n\n'
+                        'If you need urgent help, you can reply to this email or call us directly on +254703297902.'
+                    ),
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[email],
+                    reply_to=[settings.BOOKING_NOTIFICATION_EMAIL],
+                ).send(fail_silently=False)
+
             return HttpResponse('OK')
         except Exception:
             return HttpResponse('We could not save your booking right now. Please try again.', status=500)
@@ -150,9 +195,6 @@ def newsletter(request):
             return JsonResponse({'error': 'Failed! Check your email address.'}, status=500)
             
     return JsonResponse({'error': 'Invalid request.'}, status=400)
-
-
-
 
 
 

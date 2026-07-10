@@ -1,10 +1,34 @@
 
 import os
 from pathlib import Path
+from email.utils import formataddr
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _load_dotenv_file(env_path):
+    if not env_path.exists():
+        return
+
+    for raw_line in env_path.read_text().splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+
+        if line.startswith("export "):
+            line = line[7:].strip()
+
+        key, _, value = line.partition("=")
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+_load_dotenv_file(BASE_DIR / ".env")
 
 
 
@@ -12,15 +36,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p(5*+e++5$til$w6mmn-@4tncnpku#c&%vei%ev%3(0b046dio'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-p(5*+e++5$til$w6mmn-@4tncnpku#c&%vei%ev%3(0b046dio')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = [
-    'bytebridge-technologies.onrender.com',
-    'localhost',
-    '127.0.0.1',
+    host.strip()
+    for host in os.environ.get(
+        'ALLOWED_HOSTS',
+        'bytebridge-technologies.onrender.com,localhost,127.0.0.1'
+    ).split(',')
+    if host.strip()
 ]
 
 
@@ -128,3 +155,21 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email configuration
+# Set these in your deployment environment to enable instant booking notifications.
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+EMAIL_HOST = os.environ.get('EMAIL_HOST', '')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() == 'true'
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'False').lower() == 'true'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+_default_from_email = os.environ.get('DEFAULT_FROM_EMAIL', '').strip()
+if _default_from_email and not _default_from_email.startswith('f"'):
+    DEFAULT_FROM_EMAIL = _default_from_email
+else:
+    DEFAULT_FROM_EMAIL = formataddr(('ByteBridge Technologies', EMAIL_HOST_USER)) if EMAIL_HOST_USER else 'webmaster@localhost'
+
+BOOKING_NOTIFICATION_EMAIL = os.environ.get('BOOKING_NOTIFICATION_EMAIL', '').strip() or EMAIL_HOST_USER or DEFAULT_FROM_EMAIL
+BOOKING_COPY_TO_CUSTOMER = os.environ.get('BOOKING_COPY_TO_CUSTOMER', 'False').lower() == 'true'
