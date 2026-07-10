@@ -1,7 +1,6 @@
-from django.shortcuts import render
 
-# Create your views here.
 from django.shortcuts import render
+from .models import Contact, NewsLetter
 
 def index(request):
     return render(request, 'index.html')
@@ -49,7 +48,14 @@ def testimonials(request):
     return render(request, 'testimonials.html')
 
 def newsletter(request):
-    return render(request, 'newsletter.html')
+    if request.method == 'POST':
+        subscriber = NewsLetter(
+            email = request.POST.get('email')
+        )
+        subscriber.save()
+        return render(request, 'index.html', {'success': True})
+    else:
+        return render(request, 'index.html')
 
 
 
