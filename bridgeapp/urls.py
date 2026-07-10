@@ -16,5 +16,6 @@ urlpatterns = [
     path('customSystems/', views.customSystems, name='customSystems'),
     path('booking/', views.booking, name='booking'),
     path('testimonials/', views.testimonials, name='testimonials'),
+    path('newsletter/', views.newsletter, name='newsletter'),
 
 ]

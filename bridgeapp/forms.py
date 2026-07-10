@@ -1,4 +1,4 @@
-from .models import Contact
+from .models import Contact, NewsLetter
 from django import forms
 
 class ContactForm(forms.ModelForm):
@@ -6,3 +6,8 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = ['name', 'email', 'subject', 'message']
 
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = NewsLetter
+        fields = ['email']

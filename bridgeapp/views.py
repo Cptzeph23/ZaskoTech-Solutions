@@ -48,6 +48,9 @@ def booking(request):
 def testimonials(request):
     return render(request, 'testimonials.html')
 
+def newsletter(request):
+    return render(request, 'newsletter.html')
+
 
 
 
