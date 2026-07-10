@@ -1,7 +1,9 @@
-from email.message import Message
+from datetime import date
 
-from django.http import JsonResponse
-from django.shortcuts import redirect, render
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
 from .models import Contact, NewsLetter
 
 def index(request):
@@ -67,6 +69,64 @@ def customSystems(request):
     return render(request, 'customSystems.html')
 
 def booking(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        company = request.POST.get('company', '').strip()
+        email = request.POST.get('email', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        service = request.POST.get('service', '').strip()
+        project_type = request.POST.get('project_type', '').strip()
+        preferred_date = request.POST.get('date', '').strip()
+        preferred_time = request.POST.get('time', '').strip()
+        budget = request.POST.get('budget', '').strip()
+        preferred_contact = request.POST.get('contact_preference', 'WhatsApp').strip() or 'WhatsApp'
+        message = request.POST.get('message', '').strip()
+        consent = request.POST.get('consent', '').strip()
+
+        if not all([name, email, phone, service, preferred_date, preferred_time, message, consent]):
+            return HttpResponse('Please complete all required booking fields.', status=400)
+
+        try:
+            validate_email(email)
+        except ValidationError:
+            return HttpResponse('Please enter a valid email address.', status=400)
+
+        try:
+            requested_date = date.fromisoformat(preferred_date)
+        except ValueError:
+            return HttpResponse('Please choose a valid booking date.', status=400)
+
+        if requested_date < date.today():
+            return HttpResponse('Please choose a future booking date.', status=400)
+
+        subject = f'Booking request: {service}'[:200]
+        details = [
+            f'Name: {name}',
+            f'Company: {company}' if company else None,
+            f'Email: {email}',
+            f'Phone: {phone}',
+            f'Service: {service}',
+            f'Project type: {project_type}' if project_type else None,
+            f'Preferred date: {preferred_date}',
+            f'Preferred time: {preferred_time}',
+            f'Budget: {budget}' if budget else None,
+            f'Preferred contact: {preferred_contact}',
+            '',
+            'Project notes:',
+            message,
+        ]
+
+        try:
+            Contact.objects.create(
+                name=name,
+                email=email,
+                subject=subject,
+                message='\n'.join([line for line in details if line is not None]),
+            )
+            return HttpResponse('OK')
+        except Exception:
+            return HttpResponse('We could not save your booking right now. Please try again.', status=500)
+
     return render(request, 'booking.html')
 
 def testimonials(request):
@@ -90,9 +150,6 @@ def newsletter(request):
             return JsonResponse({'error': 'Failed! Check your email address.'}, status=500)
             
     return JsonResponse({'error': 'Invalid request.'}, status=400)
-
-
-
 
 
 

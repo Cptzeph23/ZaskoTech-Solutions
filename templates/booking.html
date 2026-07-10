@@ -1,52 +1,436 @@
 {% extends 'starter-page.html' %}
-{% load static %}
 {% block body %}
 
-  <!-- Booking Section -->
-    <section id="booking" class="booking section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Booking</h2>
-        <p>Book a consultation with our team</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4 justify-content-center">
-
-          <div class="col-xl-6 col-lg-8" data-aos="fade-up" data-aos-delay="200">
-            <div class="booking-form">
-              <form action="form" method="post" role="form" class="php-email-form">
-                <div class="row gy-3">
-                  <div class="col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Your Email" required>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <input type="tel" name="phone" class="form-control" placeholder="Your Phone" required>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <input type="date" name="date" class="form-control" placeholder="Booking Date" required>
-                  </div>
-                </div>
-                <div class="form-group mt-3">
-                  <textarea name="message" class="form-control" rows="5" placeholder="Message" required></textarea>
-                </div>
-                <div class="text-center mt-3">
-                  <button type="submit" class="btn mt-3 border-3 fw-bolder text-white text-center p-3 btn- btn-outline-info" style="display: flex; background-color: rgb(27, 3, 240); align-items: center; justify-content: center; margin: 0 auto; border-radius: 15px;">Book Now</button>
-                
-                </div>
-              </form>
-            </div><!-- End Booking Form -->
+<section id="booking" class="booking section">
+  <div class="container">
+    <div class="booking-hero" data-aos="fade-up">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <span class="booking-kicker">Consultation booking</span>
+          <h2>Book a strategy session with ByteBridge Technologies</h2>
+          <p>
+            Tell us what you want to build, when you want to launch, and how we should reach you.
+            We will review the request and prepare a focused consultation for your team.
+          </p>
+          <div class="booking-badges">
+            <span><i class="bi bi-clock-history"></i> Response within 24 hours</span>
+            <span><i class="bi bi-lightning-charge-fill"></i> Fast scoping</span>
+            <span><i class="bi bi-shield-check"></i> Secure handling</span>
           </div>
-
         </div>
 
+        <div class="col-lg-4">
+          <div class="booking-quick-card">
+            <div class="booking-stat-grid">
+              <div class="booking-stat">
+                <strong>Free</strong>
+                <span>Intro consultation</span>
+              </div>
+              <div class="booking-stat">
+                <strong>Remote</strong>
+                <span>Or on-site planning</span>
+              </div>
+              <div class="booking-stat">
+                <strong>Clear</strong>
+                <span>Scope and timeline</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <div class="booking-card booking-info" data-aos="fade-up" data-aos-delay="100">
+          <h3>Why teams book with us</h3>
+          <p>
+            We keep the process simple, transparent, and structured so you leave with a plan
+            you can act on immediately.
+          </p>
+
+          <ul class="booking-feature-list">
+            <li>
+              <i class="bi bi-diagram-3"></i>
+              <div>
+                <strong>Tailored discovery</strong>
+                <span>We map your goals, users, and delivery priorities before any build starts.</span>
+              </div>
+            </li>
+            <li>
+              <i class="bi bi-clipboard-check"></i>
+              <div>
+                <strong>Clear scope and milestones</strong>
+                <span>You get a realistic path, with a timeline that keeps everyone aligned.</span>
+              </div>
+            </li>
+            <li>
+              <i class="bi bi-phone"></i>
+              <div>
+                <strong>Fast communication</strong>
+                <span>We can continue the conversation by WhatsApp, call, or email.</span>
+              </div>
+            </li>
+            <li>
+              <i class="bi bi-stars"></i>
+              <div>
+                <strong>Practical recommendations</strong>
+                <span>Expect actionable advice on design, technology, and launch readiness.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="booking-process booking-card mt-4" data-aos="fade-up" data-aos-delay="200">
+          <h4>How it works</h4>
+          <div class="booking-process-step">
+            <span class="booking-step-index">1</span>
+            <p>
+              <strong>Share your goals</strong>
+              Tell us the service, budget, timeline, and the outcome you want to achieve.
+            </p>
+          </div>
+          <div class="booking-process-step">
+            <span class="booking-step-index">2</span>
+            <p>
+              <strong>We review and plan</strong>
+              Our team checks the brief and prepares the right people for the consultation.
+            </p>
+          </div>
+          <div class="booking-process-step">
+            <span class="booking-step-index">3</span>
+            <p>
+              <strong>We confirm next steps</strong>
+              You receive the next best action, whether that is a meeting, proposal, or audit.
+            </p>
+          </div>
+        </div>
+
+        <div class="booking-card booking-info mt-4" data-aos="fade-up" data-aos-delay="300">
+          <h3>Need a faster response?</h3>
+          <p>
+            Reach us directly on WhatsApp or call us for urgent projects and same-day inquiries.
+          </p>
+          <div class="booking-contact-strip">
+            <a href="tel:+254703297902"><i class="bi bi-telephone"></i> Call now</a>
+            <a href="https://wa.me/254703297902" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+            <a href="mailto:bytebridgetechnologies2026@gmail.com"><i class="bi bi-envelope"></i> Email us</a>
+          </div>
+        </div>
       </div>
 
-    </section><!-- /Booking Section -->
+      <div class="col-lg-7">
+        <div class="booking-summary booking-card" data-aos="fade-up" data-aos-delay="100">
+          <h3>Booking snapshot</h3>
+          <p class="mb-0">This summary updates as you complete the form.</p>
+          <ul class="summary-list mt-3">
+            <li>
+              <span><i class="bi bi-person"></i> Name</span>
+              <strong id="booking-summary-name">Your name</strong>
+            </li>
+            <li>
+              <span><i class="bi bi-box-seam"></i> Service</span>
+              <strong id="booking-summary-service">Select a service</strong>
+            </li>
+            <li>
+              <span><i class="bi bi-calendar3"></i> Schedule</span>
+              <strong id="booking-summary-schedule">Choose date and time</strong>
+            </li>
+            <li>
+              <span><i class="bi bi-wallet2"></i> Budget</span>
+              <strong id="booking-summary-budget">Choose a budget range</strong>
+            </li>
+            <li>
+              <span><i class="bi bi-chat-dots"></i> Contact</span>
+              <strong id="booking-summary-contact">WhatsApp</strong>
+            </li>
+          </ul>
+        </div>
+
+        <div class="booking-panel booking-form-card mt-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mb-4">
+            <div>
+              <h3 class="mb-2">Tell us about your project</h3>
+              <p class="mb-0">
+                Complete the form and we will get back with the next best step.
+              </p>
+            </div>
+            <div class="text-md-end">
+              <small class="form-hint">Typical response time</small>
+              <div class="fw-bold text-success">Within 1 business day</div>
+            </div>
+          </div>
+
+          <form action="{% url 'booking' %}" method="post" role="form" class="booking-ajax-form" id="booking-form">
+            {% csrf_token %}
+            <div class="loading" style="display: none;">Loading...</div>
+            <div class="error-message" style="display: none;"></div>
+            <div class="sent-message" style="display: none;">Your booking request has been received. We will contact you shortly.</div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="booking-name" class="form-label">Full name</label>
+                <input id="booking-name" type="text" name="name" class="form-control" placeholder="Your full name" autocomplete="name" required maxlength="100">
+              </div>
+
+              <div class="col-md-6">
+                <label for="booking-company" class="form-label">Company or brand</label>
+                <input id="booking-company" type="text" name="company" class="form-control" placeholder="Optional" autocomplete="organization" maxlength="120">
+              </div>
+
+              <div class="col-md-6">
+                <label for="booking-email" class="form-label">Email address</label>
+                <input id="booking-email" type="email" name="email" class="form-control" placeholder="email@example.com" autocomplete="email" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="booking-phone" class="form-label">Phone number</label>
+                <input id="booking-phone" type="tel" name="phone" class="form-control" placeholder="+254 7XX XXX XXX" autocomplete="tel" required maxlength="30">
+              </div>
+
+              <div class="col-md-6">
+                <label for="booking-service" class="form-label">Service needed</label>
+                <select id="booking-service" name="service" class="form-select" required>
+                  <option value="" selected disabled>Select a service</option>
+                  <option>Web Design &amp; Development</option>
+                  <option>Mobile App Development</option>
+                  <option>Custom Software &amp; Systems</option>
+                  <option>Cloud Integration</option>
+                  <option>AI &amp; Automation</option>
+                  <option>Brand / UX Review</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="booking-project-type" class="form-label">Project type</label>
+                <select id="booking-project-type" name="project_type" class="form-select">
+                  <option value="" selected>Choose a project type</option>
+                  <option>New build</option>
+                  <option>Redesign</option>
+                  <option>Feature expansion</option>
+                  <option>Support / maintenance</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="booking-date" class="form-label">Preferred date</label>
+                <input id="booking-date" type="date" name="date" class="form-control" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="booking-time" class="form-label">Preferred time</label>
+                <input id="booking-time" type="time" name="time" class="form-control" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="booking-budget" class="form-label">Budget range</label>
+                <select id="booking-budget" name="budget" class="form-select">
+                  <option value="" selected>Select a range</option>
+                  <option>Under KES 100,000</option>
+                  <option>KES 100,000 - KES 300,000</option>
+                  <option>KES 300,000 - KES 1,000,000</option>
+                  <option>KES 1,000,000+</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <fieldset>
+                  <legend class="form-label mb-2">Preferred contact</legend>
+                  <div class="d-flex flex-wrap gap-3">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="contact_preference" id="booking-contact-whatsapp" value="WhatsApp" data-summary-label="WhatsApp" checked>
+                      <label class="form-check-label" for="booking-contact-whatsapp">WhatsApp</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="contact_preference" id="booking-contact-call" value="Call" data-summary-label="Phone call">
+                      <label class="form-check-label" for="booking-contact-call">Call</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="contact_preference" id="booking-contact-email" value="Email" data-summary-label="Email">
+                      <label class="form-check-label" for="booking-contact-email">Email</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="col-12">
+                <label for="booking-message" class="form-label">Project details</label>
+                <textarea id="booking-message" name="message" class="form-control" rows="6" placeholder="Tell us about your goals, target users, deadline, current challenges, and anything else we should know." required></textarea>
+                <div class="form-hint mt-2">The more context you share, the more accurate our consultation will be.</div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="yes" id="booking-consent" name="consent" required>
+                  <label class="form-check-label" for="booking-consent">
+                    I agree that ByteBridge Technologies can contact me about this booking request.
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="booking-submit">
+                  <i class="bi bi-calendar2-check"></i>
+                  Request consultation
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('booking-form');
+
+      if (!form) {
+        return;
+      }
+
+      const dateInput = form.querySelector('#booking-date');
+      const nameInput = form.querySelector('#booking-name');
+      const serviceInput = form.querySelector('#booking-service');
+      const timeInput = form.querySelector('#booking-time');
+      const budgetInput = form.querySelector('#booking-budget');
+
+      const summaryName = document.getElementById('booking-summary-name');
+      const summaryService = document.getElementById('booking-summary-service');
+      const summarySchedule = document.getElementById('booking-summary-schedule');
+      const summaryBudget = document.getElementById('booking-summary-budget');
+      const summaryContact = document.getElementById('booking-summary-contact');
+      const loading = form.querySelector('.loading');
+      const errorMessage = form.querySelector('.error-message');
+      const sentMessage = form.querySelector('.sent-message');
+      const submitButton = form.querySelector('button[type="submit"]');
+
+      const setMinDate = () => {
+        const today = new Date();
+        today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+        if (dateInput) {
+          dateInput.min = today.toISOString().split('T')[0];
+        }
+      };
+
+      const getSelectedContact = () => {
+        const selected = form.querySelector('input[name="contact_preference"]:checked');
+        return selected ? (selected.dataset.summaryLabel || selected.value) : 'WhatsApp';
+      };
+
+      const formatDate = (value) => {
+        if (!value) {
+          return '';
+        }
+
+        const parsedDate = new Date(`${value}T00:00:00`);
+        if (Number.isNaN(parsedDate.getTime())) {
+          return value;
+        }
+
+        return new Intl.DateTimeFormat('en-KE', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }).format(parsedDate);
+      };
+
+      const formatTime = (value) => {
+        if (!value) {
+          return '';
+        }
+
+        const [hours, minutes] = value.split(':');
+        const parsedTime = new Date(1970, 0, 1, Number(hours), Number(minutes));
+        if (Number.isNaN(parsedTime.getTime())) {
+          return value;
+        }
+
+        return new Intl.DateTimeFormat('en-KE', {
+          hour: 'numeric',
+          minute: '2-digit'
+        }).format(parsedTime);
+      };
+
+      const updateSummary = () => {
+        summaryName.textContent = nameInput && nameInput.value.trim() ? nameInput.value.trim() : 'Your name';
+        summaryService.textContent = serviceInput && serviceInput.value ? serviceInput.selectedOptions[0].textContent.trim() : 'Select a service';
+        const dateValue = dateInput && dateInput.value ? dateInput.value : '';
+        const timeValue = timeInput && timeInput.value ? timeInput.value : '';
+        summarySchedule.textContent = dateValue
+          ? `${formatDate(dateValue)}${timeValue ? ` at ${formatTime(timeValue)}` : ''}`
+          : 'Choose date and time';
+        summaryBudget.textContent = budgetInput && budgetInput.value ? budgetInput.selectedOptions[0].textContent.trim() : 'Choose a budget range';
+        summaryContact.textContent = getSelectedContact();
+      };
+
+      setMinDate();
+      updateSummary();
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        loading.style.display = 'block';
+        errorMessage.style.display = 'none';
+        sentMessage.style.display = 'none';
+        if (submitButton) {
+          submitButton.disabled = true;
+        }
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          });
+
+          const text = await response.text();
+          loading.style.display = 'none';
+
+          if (response.ok && text.trim() === 'OK') {
+            sentMessage.style.display = 'block';
+            form.reset();
+            setMinDate();
+            updateSummary();
+
+            window.setTimeout(() => {
+              sentMessage.style.display = 'none';
+            }, 4000);
+          } else {
+            errorMessage.textContent = text.trim() || 'We could not submit the booking request right now.';
+            errorMessage.style.display = 'block';
+
+            window.setTimeout(() => {
+              errorMessage.style.display = 'none';
+            }, 5000);
+          }
+        } catch (error) {
+          loading.style.display = 'none';
+          errorMessage.textContent = 'A connection error occurred. Please try again.';
+          errorMessage.style.display = 'block';
+
+          window.setTimeout(() => {
+            errorMessage.style.display = 'none';
+          }, 5000);
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+          }
+        }
+      });
+
+      form.addEventListener('input', updateSummary);
+      form.addEventListener('change', updateSummary);
+      form.addEventListener('reset', () => {
+        window.setTimeout(() => {
+          setMinDate();
+          updateSummary();
+        }, 0);
+      });
+    });
+  </script>
+</section>
 
 {% endblock %}
