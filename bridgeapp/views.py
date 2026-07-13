@@ -1,4 +1,5 @@
 import logging
+import threading
 from datetime import date
 from datetime import time as time_cls
 
@@ -11,6 +12,41 @@ from django.shortcuts import render
 from .models import BookingRequest, Contact, NewsLetter
 
 logger = logging.getLogger(__name__)
+
+
+def _send_booking_notifications(booking_request, email_body, email, phone, name):
+    try:
+        EmailMessage(
+            subject=f'Booking request: {booking_request.service}'[:200],
+            body=(
+                'A new booking request has been submitted.\n\n'
+                f'{email_body}\n\n'
+                f'Status: {booking_request.get_status_display()}\n'
+                f'Reply to: {email} / {phone}'
+            ),
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[settings.BOOKING_NOTIFICATION_EMAIL],
+            reply_to=[email],
+        ).send(fail_silently=False)
+    except Exception:
+        logger.exception('Booking was saved, but the notification email failed.')
+
+    if getattr(settings, 'BOOKING_COPY_TO_CUSTOMER', False):
+        try:
+            EmailMessage(
+                subject='We received your booking request',
+                body=(
+                    f'Hi {name},\n\n'
+                    'Thanks for booking with ByteBridge Technologies. We have received your request and will get back to you shortly.\n\n'
+                    f'Your request summary:\n{email_body}\n\n'
+                    'If you need urgent help, you can reply to this email or call us directly on +254703297902.'
+                ),
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[email],
+                reply_to=[settings.BOOKING_NOTIFICATION_EMAIL],
+            ).send(fail_silently=False)
+        except Exception:
+            logger.exception('Booking was saved, but the customer copy email failed.')
 
 def index(request):
     return render(request, 'index.html')
@@ -147,39 +183,11 @@ def booking(request):
             logger.exception('Failed to save booking request.')
             return HttpResponse('We could not save your booking right now. Please try again.', status=500)
 
-        try:
-            notification = EmailMessage(
-                subject=subject,
-                body=(
-                    'A new booking request has been submitted.\n\n'
-                    f'{email_body}\n\n'
-                    f'Status: {booking_request.get_status_display()}\n'
-                    f'Reply to: {email} / {phone}'
-                ),
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                to=[settings.BOOKING_NOTIFICATION_EMAIL],
-                reply_to=[email],
-            )
-            notification.send(fail_silently=False)
-        except Exception:
-            logger.exception('Booking was saved, but the notification email failed.')
-
-        if getattr(settings, 'BOOKING_COPY_TO_CUSTOMER', False):
-            try:
-                EmailMessage(
-                    subject='We received your booking request',
-                    body=(
-                        f'Hi {name},\n\n'
-                        'Thanks for booking with ByteBridge Technologies. We have received your request and will get back to you shortly.\n\n'
-                        f'Your request summary:\n{email_body}\n\n'
-                        'If you need urgent help, you can reply to this email or call us directly on +254703297902.'
-                    ),
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    to=[email],
-                    reply_to=[settings.BOOKING_NOTIFICATION_EMAIL],
-                ).send(fail_silently=False)
-            except Exception:
-                logger.exception('Booking was saved, but the customer copy email failed.')
+        threading.Thread(
+            target=_send_booking_notifications,
+            args=(booking_request, email_body, email, phone, name),
+            daemon=True,
+        ).start()
 
         return HttpResponse('OK')
 
@@ -206,7 +214,6 @@ def newsletter(request):
             return JsonResponse({'error': 'Failed! Check your email address.'}, status=500)
             
     return JsonResponse({'error': 'Invalid request.'}, status=400)
-
 
 
 

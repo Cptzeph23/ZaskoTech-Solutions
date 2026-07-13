@@ -173,6 +173,7 @@ EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() == 'true'
 EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'False').lower() == 'true'
 EMAIL_HOST_USER = _email_address(os.environ.get('EMAIL_HOST_USER', ''))
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_TIMEOUT = int(os.environ.get('EMAIL_TIMEOUT', '5'))
 _default_from_email = os.environ.get('DEFAULT_FROM_EMAIL', '').strip()
 if _default_from_email and not _default_from_email.startswith('f"'):
     DEFAULT_FROM_EMAIL = _default_from_email
