@@ -1,7 +1,7 @@
 
 import os
 from pathlib import Path
-from email.utils import formataddr
+from email.utils import formataddr, parseaddr
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +29,14 @@ def _load_dotenv_file(env_path):
 
 
 _load_dotenv_file(BASE_DIR / ".env")
+
+
+def _email_address(value, fallback=''):
+    """
+    Accept either a raw address or a "Name <email@example.com>" value.
+    """
+    _, address = parseaddr((value or '').strip())
+    return address or (value or '').strip() or fallback
 
 
 
@@ -163,7 +171,7 @@ EMAIL_HOST = os.environ.get('EMAIL_HOST', '')
 EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() == 'true'
 EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'False').lower() == 'true'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_USER = _email_address(os.environ.get('EMAIL_HOST_USER', ''))
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 _default_from_email = os.environ.get('DEFAULT_FROM_EMAIL', '').strip()
 if _default_from_email and not _default_from_email.startswith('f"'):
@@ -171,5 +179,8 @@ if _default_from_email and not _default_from_email.startswith('f"'):
 else:
     DEFAULT_FROM_EMAIL = formataddr(('ByteBridge Technologies', EMAIL_HOST_USER)) if EMAIL_HOST_USER else 'webmaster@localhost'
 
-BOOKING_NOTIFICATION_EMAIL = os.environ.get('BOOKING_NOTIFICATION_EMAIL', '').strip() or EMAIL_HOST_USER or DEFAULT_FROM_EMAIL
+BOOKING_NOTIFICATION_EMAIL = _email_address(
+    os.environ.get('BOOKING_NOTIFICATION_EMAIL', ''),
+    EMAIL_HOST_USER or parseaddr(DEFAULT_FROM_EMAIL)[1] or DEFAULT_FROM_EMAIL,
+)
 BOOKING_COPY_TO_CUSTOMER = os.environ.get('BOOKING_COPY_TO_CUSTOMER', 'False').lower() == 'true'

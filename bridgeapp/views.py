@@ -1,3 +1,4 @@
+import logging
 from datetime import date
 from datetime import time as time_cls
 
@@ -8,6 +9,8 @@ from django.core.validators import validate_email
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .models import BookingRequest, Contact, NewsLetter
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     return render(request, 'index.html')
@@ -140,6 +143,11 @@ def booking(request):
                 message=message,
                 consent=bool(consent),
             )
+        except Exception:
+            logger.exception('Failed to save booking request.')
+            return HttpResponse('We could not save your booking right now. Please try again.', status=500)
+
+        try:
             notification = EmailMessage(
                 subject=subject,
                 body=(
@@ -153,8 +161,11 @@ def booking(request):
                 reply_to=[email],
             )
             notification.send(fail_silently=False)
+        except Exception:
+            logger.exception('Booking was saved, but the notification email failed.')
 
-            if getattr(settings, 'BOOKING_COPY_TO_CUSTOMER', False):
+        if getattr(settings, 'BOOKING_COPY_TO_CUSTOMER', False):
+            try:
                 EmailMessage(
                     subject='We received your booking request',
                     body=(
@@ -167,10 +178,10 @@ def booking(request):
                     to=[email],
                     reply_to=[settings.BOOKING_NOTIFICATION_EMAIL],
                 ).send(fail_silently=False)
+            except Exception:
+                logger.exception('Booking was saved, but the customer copy email failed.')
 
-            return HttpResponse('OK')
-        except Exception:
-            return HttpResponse('We could not save your booking right now. Please try again.', status=500)
+        return HttpResponse('OK')
 
     return render(request, 'booking.html')
 
@@ -195,7 +206,6 @@ def newsletter(request):
             return JsonResponse({'error': 'Failed! Check your email address.'}, status=500)
             
     return JsonResponse({'error': 'Invalid request.'}, status=400)
-
 
 
 
