@@ -165,23 +165,23 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email configuration
-# Set these in your deployment environment to enable instant booking notifications.
-EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
-EMAIL_HOST = os.environ.get('EMAIL_HOST', '')
+# Django uses SMTP here, pointed at Resend's SMTP relay.
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.resend.com')
 EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() == 'true'
 EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'False').lower() == 'true'
-EMAIL_HOST_USER = _email_address(os.environ.get('EMAIL_HOST_USER', ''))
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
-EMAIL_TIMEOUT = int(os.environ.get('EMAIL_TIMEOUT', '5'))
-_default_from_email = os.environ.get('DEFAULT_FROM_EMAIL', '').strip()
-if _default_from_email and not _default_from_email.startswith('f"'):
-    DEFAULT_FROM_EMAIL = _default_from_email
-else:
-    DEFAULT_FROM_EMAIL = formataddr(('ByteBridge Technologies', EMAIL_HOST_USER)) if EMAIL_HOST_USER else 'webmaster@localhost'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'resend').strip() or 'resend'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '').strip()
+EMAIL_TIMEOUT = int(os.environ.get('EMAIL_TIMEOUT', '30'))
+
+DEFAULT_FROM_EMAIL = os.environ.get(
+    'DEFAULT_FROM_EMAIL',
+    formataddr(('ByteBridge Technologies', 'notifications@cukcu.org')),
+).strip()
 
 BOOKING_NOTIFICATION_EMAIL = _email_address(
     os.environ.get('BOOKING_NOTIFICATION_EMAIL', ''),
-    EMAIL_HOST_USER or parseaddr(DEFAULT_FROM_EMAIL)[1] or DEFAULT_FROM_EMAIL,
+    'askzeph20@gmail.com',
 )
 BOOKING_COPY_TO_CUSTOMER = os.environ.get('BOOKING_COPY_TO_CUSTOMER', 'False').lower() == 'true'

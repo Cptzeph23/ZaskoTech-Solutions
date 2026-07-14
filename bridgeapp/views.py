@@ -186,7 +186,6 @@ def booking(request):
         threading.Thread(
             target=_send_booking_notifications,
             args=(booking_request, email_body, email, phone, name),
-            daemon=True,
         ).start()
 
         return HttpResponse('OK')
@@ -214,11 +213,6 @@ def newsletter(request):
             return JsonResponse({'error': 'Failed! Check your email address.'}, status=500)
             
     return JsonResponse({'error': 'Invalid request.'}, status=400)
-
-
-
-
-
 
 
 
