@@ -1,11 +1,13 @@
 import logging
 import threading
+import json
+import urllib.error
+import urllib.request
 from datetime import date
 from datetime import time as time_cls
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.core.mail import EmailMessage
 from django.core.validators import validate_email
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -14,37 +16,68 @@ from .models import BookingRequest, Contact, NewsLetter
 logger = logging.getLogger(__name__)
 
 
+def _send_resend_email(*, subject, text, to):
+    if not settings.RESEND_API_KEY:
+        logger.warning('Resend API key is missing; skipping outbound email.')
+        return
+
+    payload = {
+        'from': settings.DEFAULT_FROM_EMAIL,
+        'to': [to] if isinstance(to, str) else list(to),
+        'subject': subject,
+        'text': text,
+    }
+
+    request = urllib.request.Request(
+    'https://api.resend.com/emails',
+    data=json.dumps(payload).encode('utf-8'),
+    headers={
+        'Authorization': f'Bearer {settings.RESEND_API_KEY}',
+        'Content-Type': 'application/json',
+        'User-Agent': 'ByteBridge-Technologies/1.0 (+https://cukcu.org)',
+        'Accept': 'application/json',
+    },
+    method='POST',
+)
+
+    try:
+        with urllib.request.urlopen(request, timeout=settings.RESEND_TIMEOUT) as response:
+            payload = response.read().decode('utf-8', errors='replace').strip()
+            if payload:
+                logger.info('Resend accepted email: %s', payload)
+    except urllib.error.HTTPError as exc:
+        details = exc.read().decode('utf-8', errors='replace') if exc.fp else ''
+        logger.error('Resend rejected email request with HTTP %s: %s', exc.code, details)
+        raise RuntimeError(f'Resend API returned HTTP {exc.code}: {details}') from exc
+
+
 def _send_booking_notifications(booking_request, email_body, email, phone, name):
     try:
-        EmailMessage(
+        _send_resend_email(
             subject=f'Booking request: {booking_request.service}'[:200],
-            body=(
+            text=(
                 'A new booking request has been submitted.\n\n'
                 f'{email_body}\n\n'
                 f'Status: {booking_request.get_status_display()}\n'
                 f'Reply to: {email} / {phone}'
             ),
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[settings.BOOKING_NOTIFICATION_EMAIL],
-            reply_to=[email],
-        ).send(fail_silently=False)
+            to=settings.BOOKING_NOTIFICATION_EMAIL,
+        )
     except Exception:
         logger.exception('Booking was saved, but the notification email failed.')
 
     if getattr(settings, 'BOOKING_COPY_TO_CUSTOMER', False):
         try:
-            EmailMessage(
+            _send_resend_email(
                 subject='We received your booking request',
-                body=(
+                text=(
                     f'Hi {name},\n\n'
                     'Thanks for booking with ByteBridge Technologies. We have received your request and will get back to you shortly.\n\n'
                     f'Your request summary:\n{email_body}\n\n'
                     'If you need urgent help, you can reply to this email or call us directly on +254703297902.'
                 ),
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                to=[email],
-                reply_to=[settings.BOOKING_NOTIFICATION_EMAIL],
-            ).send(fail_silently=False)
+                to=email,
+            )
         except Exception:
             logger.exception('Booking was saved, but the customer copy email failed.')
 
@@ -213,6 +246,7 @@ def newsletter(request):
             return JsonResponse({'error': 'Failed! Check your email address.'}, status=500)
             
     return JsonResponse({'error': 'Invalid request.'}, status=400)
+
 
 
 

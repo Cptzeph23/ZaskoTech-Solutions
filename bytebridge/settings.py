@@ -165,20 +165,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email configuration
-# Django uses SMTP here, pointed at Resend's SMTP relay.
-EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
-EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.resend.com')
-EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() == 'true'
-EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', 'False').lower() == 'true'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'resend').strip() or 'resend'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '').strip()
-EMAIL_TIMEOUT = int(os.environ.get('EMAIL_TIMEOUT', '30'))
+# Resend API powers outbound email. No SMTP settings are used.
+RESEND_API_KEY = os.environ.get('RESEND_API_KEY', '').strip()
+RESEND_FROM_NAME = os.environ.get('RESEND_FROM_NAME', 'ByteBridge Technologies').strip() or 'ByteBridge Technologies'
+RESEND_FROM_EMAIL = _email_address(
+    os.environ.get('RESEND_FROM_EMAIL', ''),
+    'notifications@cukcu.org',
+)
+RESEND_TIMEOUT = int(os.environ.get('RESEND_TIMEOUT', '30'))
 
-DEFAULT_FROM_EMAIL = os.environ.get(
-    'DEFAULT_FROM_EMAIL',
-    formataddr(('ByteBridge Technologies', 'notifications@cukcu.org')),
-).strip()
+DEFAULT_FROM_EMAIL = formataddr((RESEND_FROM_NAME, RESEND_FROM_EMAIL))
 
 BOOKING_NOTIFICATION_EMAIL = _email_address(
     os.environ.get('BOOKING_NOTIFICATION_EMAIL', ''),
