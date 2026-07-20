@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bridgeapp', '0001_initial'),
+        ('zaskoapp', '0001_initial'),
     ]
 
     operations = [
