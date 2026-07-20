@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from bridgeapp.models import BookingRequest, Contact, NewsLetter
+from zaskoapp.models import BookingRequest, Contact, NewsLetter
 
 # Register your models here.
 admin.site.register(Contact)

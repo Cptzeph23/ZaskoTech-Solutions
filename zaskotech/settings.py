@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bridgeapp',
+    'zaskoapp',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +83,7 @@ MIDDLEWARE = [
 
 ]
 
-ROOT_URLCONF = 'bytebridge.urls'
+ROOT_URLCONF = 'zaskotech.urls'
 
 TEMPLATES = [
     {
@@ -100,7 +100,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bytebridge.wsgi.application'
+WSGI_APPLICATION = 'zaskotech.wsgi.application'
 
 
 # Database
