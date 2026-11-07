@@ -53,7 +53,7 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
         'ALLOWED_HOSTS',
-        'bytebridge-technologies.onrender.com,localhost,127.0.0.1'
+        'www.zaskotechsolutions.co.ke,zaskotechsolutions.co.ke,bytebridge-technologies.onrender.com,localhost,127.0.0.1'
     ).split(',')
     if host.strip()
 ]
@@ -62,7 +62,7 @@ ALLOWED_HOSTS = [
 # deployment environment when the site is served from a custom domain.
 SITE_URL = os.environ.get(
     'SITE_URL',
-    'https://bytebridge-technologies.onrender.com',
+    'https://www.zaskotechsolutions.co.ke',
 ).rstrip('/')
 
 
@@ -102,6 +102,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'zaskotech.context_processors.site_meta',
             ],
         },
     },

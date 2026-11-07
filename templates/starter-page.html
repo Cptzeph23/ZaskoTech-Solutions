@@ -10,7 +10,7 @@
   <meta name="keywords" content="{% block page_keywords %}software development Kenya, web development Nairobi, mobile app development Kenya, business systems, AI solutions, ZaskoTech Solutions{% endblock %}">
   <meta name="author" content="ZaskoTech Solutions">
   <meta name="robots" content="{% block page_robots %}index, follow, max-image-preview:large{% endblock %}">
-  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <link rel="canonical" href="{{ site_url }}{{ request.path }}">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -21,16 +21,16 @@
   <meta property="og:site_name" content="ZaskoTech Solutions">
   <meta property="og:title" content="{% block og_title %}ZaskoTech Solutions | Software Development in Kenya{% endblock %}">
   <meta property="og:description" content="{% block og_description %}Secure software, websites, mobile apps and business systems built for growth.{% endblock %}">
-  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
-  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'assets/img/logo.png' %}">
+  <meta property="og:url" content="{{ site_url }}{{ request.path }}">
+  <meta property="og:image" content="{{ site_url }}{% static 'assets/img/logo.png' %}">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "ZaskoTech Solutions",
-    "url": "{{ request.scheme }}://{{ request.get_host }}",
-    "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'assets/img/logofnl.png' %}",
+    "url": "{{ site_url }}",
+    "logo": "{{ site_url }}{% static 'assets/img/logofnl.png' %}",
     "email": "askzeph20@gmail.com",
     "telephone": "+254703297902",
     "address": {
