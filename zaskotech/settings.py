@@ -58,6 +58,13 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
+# Public origin used for canonical links and XML sitemaps. Set SITE_URL in the
+# deployment environment when the site is served from a custom domain.
+SITE_URL = os.environ.get(
+    'SITE_URL',
+    'https://bytebridge-technologies.onrender.com',
+).rstrip('/')
+
 
 # Application definition
 

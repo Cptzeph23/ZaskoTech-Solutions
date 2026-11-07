@@ -5,21 +5,47 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Zaskotech Solutions</title>
-  <meta name="description" content="Zaskotech Solutions">
-  <meta name="keywords" content="zaskotech, solutions, software, technology, zaskotech solutions, zaskotech solutions ltd, zaskotech solutions limited, zaskotech solutions limited kenya">
+  <title>{% block page_title %}ZaskoTech Solutions | Software Development in Kenya{% endblock %}</title>
+  <meta name="description" content="{% block page_description %}ZaskoTech Solutions builds secure websites, mobile apps, business systems, AI solutions and cloud infrastructure for growing businesses in Kenya.{% endblock %}">
+  <meta name="keywords" content="{% block page_keywords %}software development Kenya, web development Nairobi, mobile app development Kenya, business systems, AI solutions, ZaskoTech Solutions{% endblock %}">
+  <meta name="author" content="ZaskoTech Solutions">
+  <meta name="robots" content="{% block page_robots %}index, follow, max-image-preview:large{% endblock %}">
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Zaskotech Solutions">
-  <meta name="twitter:description" content="Innovating Solutions for Your Business">
+  <meta name="twitter:title" content="{% block social_title %}ZaskoTech Solutions | Software Development in Kenya{% endblock %}">
+  <meta name="twitter:description" content="{% block social_description %}Secure software, websites, mobile apps and business systems built for growth.{% endblock %}">
   <meta name="twitter:image" content="{% static 'assets/img/logo.png' %}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ZaskoTech Solutions">
+  <meta property="og:title" content="{% block og_title %}ZaskoTech Solutions | Software Development in Kenya{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Secure software, websites, mobile apps and business systems built for growth.{% endblock %}">
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'assets/img/logo.png' %}">
 
-     <!-- SEO Meta Tags -->
-  <meta name="description" content="Zaskotech Solutions">
-  <meta name="keywords" content="zaskotech, solutions, software, technology, zaskotech solutions, zaskotech solutions ltd, zaskotech solutions limited, zaskotech solutions limited kenya">
-  <meta name="author" content="Zaskotech Solutions">
-  <meta name="robots" content="index, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ZaskoTech Solutions",
+    "url": "{{ request.scheme }}://{{ request.get_host }}",
+    "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'assets/img/logofnl.png' %}",
+    "email": "askzeph20@gmail.com",
+    "telephone": "+254703297902",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "00100, Thika Road",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
+    },
+    "sameAs": [
+      "https://x.com/cptzeph",
+      "https://www.linkedin.com/in/zeph-aseka-754a22252/",
+      "https://www.instagram.com/cptzeph/"
+    ]
+  }
+  </script>
 
 
   <!-- Favicons -->

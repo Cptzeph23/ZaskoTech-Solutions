@@ -11,9 +11,57 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.urls import reverse
 from .models import BookingRequest, Contact, NewsLetter
 
 logger = logging.getLogger(__name__)
+
+
+SITEMAP_PATHS = (
+    ('index', 1.0, 'weekly'),
+    ('about', 0.8, 'monthly'),
+    ('services', 0.9, 'monthly'),
+    ('portfolio', 0.8, 'monthly'),
+    ('team', 0.6, 'monthly'),
+    ('testimonials', 0.7, 'monthly'),
+    ('website', 0.8, 'monthly'),
+    ('ecommerce', 0.8, 'monthly'),
+    ('mobileApp', 0.8, 'monthly'),
+    ('customSystems', 0.8, 'monthly'),
+    ('contact', 0.7, 'monthly'),
+)
+
+
+def robots_txt(request):
+    """Allow public content to be crawled while keeping admin endpoints private."""
+    return render(
+        request,
+        'robots.txt',
+        {'sitemap_url': f'{settings.SITE_URL}/sitemap.xml'},
+        content_type='text/plain; charset=utf-8',
+    )
+
+
+def sitemap_xml(request):
+    """Return the canonical list of public, indexable pages."""
+    today = date.today().isoformat()
+    sitemap_urls = []
+    for name, priority, changefreq in SITEMAP_PATHS:
+        # Use the configured public origin rather than a localhost request host.
+        location = f'{settings.SITE_URL}{reverse(name)}'
+        sitemap_urls.append({
+            'location': location,
+            'lastmod': today,
+            'changefreq': changefreq,
+            'priority': f'{priority:.1f}',
+        })
+
+    return render(
+        request,
+        'sitemaps.xml',
+        {'sitemap_urls': sitemap_urls},
+        content_type='application/xml; charset=utf-8',
+    )
 
 
 def _send_resend_email(*, subject, text, to):
