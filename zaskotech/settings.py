@@ -49,6 +49,19 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-p(5*+e++5$til$w6mmn-@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
+# Render terminates TLS before forwarding requests to Django. These settings
+# keep canonical URLs HTTPS and prevent redirect loops behind Cloudflare.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+SECURE_SSL_REDIRECT = os.environ.get(
+    'SECURE_SSL_REDIRECT', 'False' if DEBUG else 'True'
+).lower() == 'true'
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', '0' if DEBUG else '31536000'))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_SECONDS > 0
+SECURE_HSTS_PRELOAD = SECURE_HSTS_SECONDS >= 31536000
+
 ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
@@ -64,6 +77,14 @@ SITE_URL = os.environ.get(
     'SITE_URL',
     'https://www.zaskotechsolutions.co.ke',
 ).rstrip('/')
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get(
+        'CSRF_TRUSTED_ORIGINS',
+        f'{SITE_URL},https://bytebridge-technologies.onrender.com',
+    ).split(',')
+    if origin.strip()
+]
 
 
 # Application definition
@@ -165,12 +186,22 @@ STATICFILES_DIRS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_MAX_AGE = 31536000
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 # Email configuration
 # Resend API powers outbound email. No SMTP settings are used.

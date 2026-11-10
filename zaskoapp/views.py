@@ -3,14 +3,14 @@ import threading
 import json
 import urllib.error
 import urllib.request
-from datetime import date
+from datetime import datetime
 from datetime import time as time_cls
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from .models import BookingRequest, Contact, NewsLetter
 
@@ -18,50 +18,54 @@ logger = logging.getLogger(__name__)
 
 
 SITEMAP_PATHS = (
-    ('index', 1.0, 'weekly'),
-    ('about', 0.8, 'monthly'),
-    ('services', 0.9, 'monthly'),
-    ('portfolio', 0.8, 'monthly'),
-    ('team', 0.6, 'monthly'),
-    ('testimonials', 0.7, 'monthly'),
-    ('website', 0.8, 'monthly'),
-    ('ecommerce', 0.8, 'monthly'),
-    ('mobileApp', 0.8, 'monthly'),
-    ('customSystems', 0.8, 'monthly'),
-    ('contact', 0.7, 'monthly'),
+    ('index', 'index.html', 1.0, 'weekly'),
+    ('about', 'about.html', 0.8, 'monthly'),
+    ('services', 'services.html', 0.9, 'monthly'),
+    ('portfolio', 'portfolio.html', 0.8, 'monthly'),
+    ('team', 'team.html', 0.6, 'monthly'),
+    ('testimonials', 'testimonials.html', 0.7, 'monthly'),
+    ('website', 'website.html', 0.8, 'monthly'),
+    ('ecommerce', 'ecommerce.html', 0.8, 'monthly'),
+    ('mobileApp', 'mobileApp.html', 0.8, 'monthly'),
+    ('customSystems', 'customSystems.html', 0.8, 'monthly'),
+    ('contact', 'contact.html', 0.7, 'monthly'),
 )
-
 
 def robots_txt(request):
     """Allow public content to be crawled while keeping admin endpoints private."""
-    return render(
+    response = render(
         request,
         'robots.txt',
         {'sitemap_url': f'{settings.SITE_URL}/sitemap.xml'},
         content_type='text/plain; charset=utf-8',
     )
+    response['Cache-Control'] = 'public, max-age=86400'
+    return response
 
 
 def sitemap_xml(request):
     """Return the canonical list of public, indexable pages."""
-    today = date.today().isoformat()
     sitemap_urls = []
-    for name, priority, changefreq in SITEMAP_PATHS:
+    for name, template_name, priority, changefreq in SITEMAP_PATHS:
         # Use the configured public origin rather than a localhost request host.
         location = f'{settings.SITE_URL}{reverse(name)}'
+        template_path = settings.BASE_DIR / 'templates' / template_name
+        lastmod = datetime.fromtimestamp(template_path.stat().st_mtime).date().isoformat()
         sitemap_urls.append({
             'location': location,
-            'lastmod': today,
+            'lastmod': lastmod,
             'changefreq': changefreq,
             'priority': f'{priority:.1f}',
         })
 
-    return render(
+    response = render(
         request,
         'sitemaps.xml',
         {'sitemap_urls': sitemap_urls},
         content_type='application/xml; charset=utf-8',
     )
+    response['Cache-Control'] = 'public, max-age=3600'
+    return response
 
 
 def _send_resend_email(*, subject, text, to):
@@ -132,14 +136,11 @@ def _send_booking_notifications(booking_request, email_body, email, phone, name)
 def index(request):
     return render(request, 'index.html')
 
-def portfolio(request):
-    return render(request, 'portfolio.html')
-
 def services(request):
     return render(request, 'services.html')
 
 def starter(request):
-    return render(request, 'starter-page.html')
+    return redirect('index')
 
 def about(request):
     return render(request, 'about.html')

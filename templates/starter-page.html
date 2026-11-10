@@ -16,7 +16,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{% block social_title %}ZaskoTech Solutions | Software Development in Kenya{% endblock %}">
   <meta name="twitter:description" content="{% block social_description %}Secure software, websites, mobile apps and business systems built for growth.{% endblock %}">
-  <meta name="twitter:image" content="{% static 'assets/img/logo.png' %}">
+  <meta name="twitter:image" content="{{ site_url }}{% static 'assets/img/logo.png' %}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ZaskoTech Solutions">
   <meta property="og:title" content="{% block og_title %}ZaskoTech Solutions | Software Development in Kenya{% endblock %}">
@@ -27,25 +27,57 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "ZaskoTech Solutions",
-    "url": "{{ site_url }}",
-    "logo": "{{ site_url }}{% static 'assets/img/logofnl.png' %}",
-    "email": "askzeph20@gmail.com",
-    "telephone": "+254703297902",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "00100, Thika Road",
-      "addressLocality": "Nairobi",
-      "addressCountry": "KE"
-    },
-    "sameAs": [
-      "https://x.com/cptzeph",
-      "https://www.linkedin.com/in/zeph-aseka-754a22252/",
-      "https://www.instagram.com/cptzeph/"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ site_url }}/#organization",
+        "name": "ZaskoTech Solutions",
+        "url": "{{ site_url }}",
+        "logo": "{{ site_url }}{% static 'assets/img/logofnl.png' %}",
+        "email": "askzeph20@gmail.com",
+        "telephone": "+254703297902",
+        "sameAs": [
+          "https://x.com/cptzeph",
+          "https://www.linkedin.com/in/zeph-aseka-754a22252/",
+          "https://www.instagram.com/cptzeph/"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "{{ site_url }}/#localbusiness",
+        "name": "ZaskoTech Solutions",
+        "url": "{{ site_url }}",
+        "image": "{{ site_url }}{% static 'assets/img/logo.png' %}",
+        "telephone": "+254703297902",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "00100, Thika Road",
+          "addressLocality": "Nairobi",
+          "addressCountry": "KE"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Kenya"
+        },
+        "parentOrganization": {
+          "@id": "{{ site_url }}/#organization"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ site_url }}/#website",
+        "url": "{{ site_url }}",
+        "name": "ZaskoTech Solutions",
+        "publisher": {
+          "@id": "{{ site_url }}/#organization"
+        }
+      }
     ]
   }
   </script>
+
+  {% block structured_data %}{% endblock %}
 
 
   <!-- Favicons -->
@@ -76,11 +108,11 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
       <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto">
-                  <img src="{% static 'assets/img/logofnl.png' %}" class="rounded-circle img-fluid " style="max-width: 40px"/>
+                  <img src="{% static 'assets/img/logofnl.png' %}" class="rounded-circle img-fluid " style="max-width: 40px" width="40" height="40" alt="ZaskoTech Solutions logo" fetchpriority="high"/>
 
           <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename"><span>Zasko</span>Tech Solutions</h1>
+        <span class="sitename"><span>Zasko</span>Tech Solutions</span>
       </a>
 
       <nav id="navmenu" class="navmenu">

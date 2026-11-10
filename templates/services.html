@@ -3,6 +3,20 @@
 {% block page_title %}Software Development Services in Kenya | ZaskoTech{% endblock %}
 {% block page_description %}Explore ZaskoTech services including web development, mobile apps, cloud integration, custom business systems, AI and machine learning solutions.{% endblock %}
 {% block page_keywords %}software development services Kenya, web development, mobile app development, cloud integration, AI Kenya, custom systems{% endblock %}
+{% block structured_data %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "{{ site_url }}/services/#service",
+    "name": "Software Development Services",
+    "serviceType": "Web, mobile, cloud, AI and custom business software development",
+    "provider": {"@id": "{{ site_url }}/#organization"},
+    "areaServed": {"@type": "Country", "name": "Kenya"},
+    "url": "{{ site_url }}{% url 'services' %}"
+  }
+  </script>
+{% endblock %}
 {% block body %}
 
 
@@ -34,7 +48,7 @@
                   <li><strong>Library Management:</strong> Digital cataloging and circulation systems.</li>
                 </ul>
                 <div class="feature-image">
-                  <img src="{% static 'assets/img/school.jpeg' %}" alt="Educational Management Systems" class="img-fluid">
+                  <img src="{% static 'assets/img/school.jpeg' %}" alt="Educational Management Systems" class="img-fluid" loading="lazy" decoding="async">
                 </div>
               </div>
 <!--              <div class="card-footer">-->
@@ -64,7 +78,7 @@
                   <li><strong>Scalable Architecture:</strong> Future-proof design to accommodate growth and evolving requirements.</li>
                 </ul>
                 <div class="feature-image">
-                  <img src="{% static 'assets/img/SACCO.png' %}" alt="SACCO and FinTech Platforms" class="img-fluid">
+                  <img src="{% static 'assets/img/SACCO.png' %}" alt="SACCO and FinTech Platforms" class="img-fluid" loading="lazy" decoding="async">
                 </div>
               </div>
 <!--              <div class="card-footer">-->
@@ -93,7 +107,7 @@
                   <li><strong>House Hunting</strong>Local Property Search </li>
                 </ul>
                 <div class="feature-image">
-                  <img src="{% static 'assets/img/realestate2.jpg' %}" alt="Real Estate Systems" class="img-fluid">
+                  <img src="{% static 'assets/img/realestate2.jpg' %}" alt="Real Estate Systems" class="img-fluid" loading="lazy" decoding="async">
                 </div>
               </div>
 <!--              <div class="card-footer">-->
@@ -122,7 +136,7 @@
                   
                 </ul>
                 <div class="feature-image">
-                  <img src="{% static 'assets/img/ngo.jpeg' %}" alt="NGO Data Infrastructure" class="img-fluid">
+                  <img src="{% static 'assets/img/ngo.jpeg' %}" alt="NGO Data Infrastructure" class="img-fluid" loading="lazy" decoding="async">
                 </div>
               </div>
 <!--              <div class="card-footer">-->
@@ -151,7 +165,7 @@
                   <li><strong>Forensic Analysis:</strong> Detailed investigation and analysis of financial data.</li>
                 </ul>
                 <div class="feature-image">
-                  <img src="{% static 'assets/img/fintech.webp' %}" alt="NGO Data Infrastructure" class="img-fluid">
+                  <img src="{% static 'assets/img/fintech.webp' %}" alt="FinTech software solutions" class="img-fluid" loading="lazy" decoding="async">
                 </div>
               </div>
 <!--              <div class="card-footer">-->
@@ -179,7 +193,7 @@
                   <li><strong>Enhanced Security:</strong> Robust data protection measures to ensure compliance and confidentiality.</li>
                 </ul>
                 <div class="feature-image">
-                  <img src="{% static 'assets/img/custom.webp' %}" alt="NGO Data Infrastructure" class="img-fluid">
+                  <img src="{% static 'assets/img/custom.webp' %}" alt="Custom business software" class="img-fluid" loading="lazy" decoding="async">
                 </div>
               </div>
 <!--              <div class="card-footer">-->
@@ -237,7 +251,7 @@
           </div>
 
           <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-            <img src="{% static 'assets/img/phone.jpg' %}" alt="Agile Software Delivery Architecture" class="img-fluid services-img">
+            <img src="{% static 'assets/img/phone.jpg' %}" alt="Agile Software Delivery Architecture" class="img-fluid services-img" loading="lazy" decoding="async">
             <h3>Our Service Delivery Blueprint</h3>
             <p>
               We maintain absolute commitment to clean code execution and secure physical network deployment. Our engineering team designs solutions to meet aggressive enterprise requirements while staying within predictable project timelines. By eliminating communication gaps, we transition your project smoothly from structural design to deployment.
