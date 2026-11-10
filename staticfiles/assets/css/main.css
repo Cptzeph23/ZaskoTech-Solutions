@@ -162,7 +162,7 @@ h6 {
   margin-right: 8px;
 }
 
-.header .logo h1 {
+.header .logo .sitename {
   font-size: 30px;
   margin: 0;
   font-weight: 700;
@@ -170,7 +170,7 @@ h6 {
   padding-bottom: 5px;
 }
 
-.header .logo h1 span {
+.header .logo .sitename span {
   color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
   font-style: italic;
 }
@@ -198,7 +198,7 @@ h6 {
     order: 1;
   }
 
-  .header .logo h1 {
+  .header .logo .sitename {
     font-size: 24px;
   }
 
@@ -227,7 +227,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Navmenu - Desktop */
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   .navmenu {
     padding: 0;
   }
@@ -363,7 +363,7 @@ h6 {
 }
 
 /* Navmenu - Mobile */
-@media (max-width: 1199px) {
+@media (max-width: 991px) {
   .mobile-nav-toggle {
     color: var(--nav-color);
     font-size: 28px;
@@ -485,6 +485,16 @@ h6 {
   }
 
   .mobile-nav-active .navmenu>ul {
+    display: block;
+  }
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
     display: block;
   }
 }
