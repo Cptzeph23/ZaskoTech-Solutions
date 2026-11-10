@@ -230,6 +230,7 @@ h6 {
 @media (min-width: 992px) {
   .navmenu {
     padding: 0;
+    margin-left: auto;
   }
 
   .navmenu ul {
@@ -238,6 +239,8 @@ h6 {
     display: flex;
     list-style: none;
     align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
   }
 
   .navmenu li {
@@ -246,7 +249,7 @@ h6 {
 
   .navmenu>ul>li {
     white-space: nowrap;
-    padding: 15px 14px;
+    padding: 15px 8px;
   }
 
   .navmenu>ul>li:last-child {
@@ -257,7 +260,7 @@ h6 {
   .navmenu a:focus {
     color: var(--nav-color);
     padding: 0 2px;
-    font-size: 17px;
+    font-size: 14px;
     font-family: var(--nav-font);
     font-weight: 500;
     display: flex;
@@ -836,22 +839,38 @@ section,
 }
 
 .hero .hero-content h2 {
-  font-size: 3.5rem;
+  font-size: 2.35rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.2;
   color: var(--heading-color);
 }
 
+.hero .hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+}
+
 @media (max-width: 992px) {
-  .hero .hero-content h2 {
+  .hero .hero-content h1 {
     font-size: 2.5rem;
+  }
+
+  .hero .hero-content h2 {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 768px) {
+  .hero .hero-content h1 {
+    font-size: 2.1rem;
+  }
+
   .hero .hero-content h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }
 
